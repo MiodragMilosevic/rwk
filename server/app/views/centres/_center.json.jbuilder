@@ -1,0 +1,9 @@
+json.id center.id
+json.name center.name
+json.director center.director
+json.address center.address
+json.email center.email
+json.phone center.phone
+json.website center.website
+json.country_id center.country.id
+json.country_name center.country.name

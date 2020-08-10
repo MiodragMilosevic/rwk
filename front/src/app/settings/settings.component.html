@@ -1,0 +1,224 @@
+<app-header *ngIf="levels && levels.length != 0" (update)="ngOnInit()" [levelData]="this.levels[this.instrumentIndex][levelIndex - 1]" [instrumentData]="this.currentInstrument" ></app-header>
+<app-header *ngIf="!levels || (levels && levels.length == 0)" (update)="ngOnInit()"  ></app-header>
+<div class="content" *ngIf="settingsPage && load">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-12">
+                <div class="profile-modal">
+                    <div class="row ">
+                        <div class="col-lg-12 col-md-12 col-sm-12 text-right">
+                            <!--
+                            <img src="assets/images/settings.svg" class="settings-img" />
+                            -->
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 text-center">
+                            <div class="profile-info">
+                                <div class="profile-photo-wrapper" *ngIf="!imagePreview">
+                                    <button class="image-button">
+                                        <img src="assets/images/Upload_pic.png" class="avatar" style="margin-left: -1px;" />
+                                    </button>
+                                </div>
+                                <button class="image-button" *ngIf="imagePreview">
+                                    <img src="{{ imagePreview }}" class="profile-photo-wrapper" />
+                                </button>
+                                <div class="user-name">
+                                    {{ user?.first_name + ' ' + user?.last_name }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-12">
+                <div class="settings-modal">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="settings-title">
+                                {{ content?.title }}
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 text-right" *ngIf="message">
+                            <div class="error">
+                                {{message}}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form">
+                        <form [formGroup]="settingsForm">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>{{ content?.first_name }}</label>
+                                        <input formControlName="firstName" type="text" class="form-control margin-field"
+                                            [ngClass]="{ 'is-invalid': submitted && formGroup.firstName.errors }"
+                                            placeholder="{{ content?.first_name }}" />
+                                        <div *ngIf="submitted && formGroup.firstName.errors" class="invalid-feedback">
+                                            <div class="overflow" *ngIf="formGroup.firstName.errors?.required">{{ content?.first_name_required }}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 change-password" *ngIf="!facebook_id">
+                                    <div class="form-group">
+                                        <label>{{ content?.change_password }}</label>
+                                        <input formControlName="oldPassword" type="password"
+                                            class="form-control margin-field"
+                                            [ngClass]="{ 'is-invalid': submitted && formGroup.oldPassword.errors }"
+                                            placeholder="{{ content?.old_password }}" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 erase-profile facebook" *ngIf="facebook_id">
+                                    <div class="title">
+                                        Remove my profile
+                                    </div>
+                                    <button class="erase-button" (click)="showDeleteModal()">
+                                        Delete Account
+                                    </button>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>{{ content?.last_name }}</label>
+                                        <input formControlName="lastName" type="text" class="form-control margin-field"
+                                            [ngClass]="{ 'is-invalid': submitted && formGroup.lastName.errors }"
+                                            placeholder="{{ content?.last_name }}" />
+                                        <div *ngIf="submitted && formGroup.lastName.errors" class="invalid-feedback">
+                                            <div class="overflow" *ngIf="formGroup.lastName.errors?.required">{{ content?.last_name_required }}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 change-password" *ngIf="!facebook_id">
+                                    <div class="form-group near-top">
+                                        <label></label>
+                                        <input formControlName="newPassword" type="password"
+                                            class="form-control margin-field"
+                                            [ngClass]="{ 'is-invalid': submitted && formGroup.newPassword.errors }"
+                                            placeholder="{{ content?.new_password }}" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12" *ngIf="facebook_id">
+
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>{{ content?.date_of_birth }}</label>
+                                        <input [maxDate]="today" [startDate]="startDate"
+                                            class="form-control margin-field birthday" placeholder="{{ content?.date_of_birth }}"
+                                            [ngClass]="{ 'is-invalid': submitted && formGroup.dateOfBirth.errors }"
+                                            name="dp" formControlName="dateOfBirth" ngbDatepicker #d="ngbDatepicker"
+                                            [readonly]="true" (click)="d.toggle()">
+                                        <div *ngIf="submitted && formGroup.dateOfBirth.errors" class="invalid-feedback">
+                                            <div class="overflow" *ngIf="formGroup.dateOfBirth.errors?.required">{{ content?.date_required }}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 bottom-border change-password" *ngIf="!facebook_id">
+                                    <div class="form-group near-top-x2">
+                                        <label></label>
+                                        <input formControlName="confirmPassword" type="password"
+                                            class="form-control margin-field"
+                                            [ngClass]="{ 'is-invalid': submitted && formGroup.confirmPassword.errors }"
+                                            placeholder="{{ content?.confirm_new_password }}" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12" *ngIf="facebook_id">
+
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>{{ content?.contact }}</label>
+                                        <input formControlName="telephone" type="text" class="form-control margin-field"
+                                            [ngClass]="{ 'is-invalid': submitted && formGroup.telephone.errors }"
+                                            placeholder="{{ content?.contact }}" />
+                                        <div *ngIf="submitted && formGroup.telephone.errors" class="invalid-feedback">
+                                            <div class="overflow" *ngIf="formGroup.telephone.errors?.required">{{ content?.telephone_required }}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 erase-profile" *ngIf="!facebook_id">
+                                    <div class="title">
+                                        Remove my profile
+                                    </div>
+                                    <button class="erase-button" (click)="showDeleteModal()">
+                                        Delete Account
+                                    </button>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12" *ngIf="facebook_id">
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>{{content?.address}}</label>
+                                        <input formControlName="address" type="text"
+                                            class="form-control margin-field"
+                                            [ngClass]="{ 'is-invalid': submitted && formGroup.emailAddress.errors }"
+                                            placeholder="{{content?.address}}" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>{{ content?.email }}</label>
+                                        <input formControlName="emailAddress" type="text"
+                                            class="form-control margin-field"
+                                            [ngClass]="{ 'is-invalid': submitted && formGroup.emailAddress.errors }"
+                                            placeholder="{{ content?.email }}" />
+                                        <div *ngIf="submitted && formGroup.emailAddress.errors"
+                                            class="invalid-feedback">
+                                            <div class="overflow" *ngIf="formGroup.emailAddress.errors?.required">{{ content?.email_required }}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 mobile-change-password" *ngIf="!facebook_id">
+                                    <div class="form-group">
+                                        <label>{{ content?.change_password }}</label>
+                                        <input formControlName="oldPassword" type="password"
+                                            class="form-control margin-field"
+                                            [ngClass]="{ 'is-invalid': submitted && formGroup.oldPassword.errors }"
+                                            placeholder="{{ content?.old_password }}" />
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 mobile-change-password" *ngIf="!facebook_id">
+                                    <div class="form-group near-top">
+                                        <label></label>
+                                        <input formControlName="newPassword" type="password"
+                                            class="form-control margin-field"
+                                            [ngClass]="{ 'is-invalid': submitted && formGroup.newPassword.errors }"
+                                            placeholder="{{ content?.new_password }}" />
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 mobile-change-password" *ngIf="!facebook_id">
+                                    <div class="form-group near-top-x2">
+                                        <label></label>
+                                        <input formControlName="confirmPassword" type="password"
+                                            class="form-control margin-field"
+                                            [ngClass]="{ 'is-invalid': submitted && formGroup.confirmPassword.errors }"
+                                            placeholder="{{ content?.confirm_new_password }}" />
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 mobile-erase-profile">
+                                    <div class="title">
+                                        Remove my profile
+                                    </div>
+                                    <button class="erase-button" (click)="showDeleteModal()">
+                                        Delete Account
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12 text-right">
+                                    <button (click)="changeUser()">{{ content?.save_changes }}</button>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-footer *ngIf="settingsPage"></app-footer>

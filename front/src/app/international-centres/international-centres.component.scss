@@ -1,0 +1,188 @@
+@import "../../assets/styles/colors.scss";
+
+.international-centres-background {
+    position: relative;
+    z-index: 0;
+    padding-top: 115px;
+    min-height: 1100px;
+    &:before{
+        content: '';
+        background-image: url("../../assets/images/header-shape-2.png");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        top: calc(-100vw * 0.17);
+        left: calc(100vw * 0.35);
+        width: calc(100vw * 0.5);
+        height: calc(100vw * 0.31);
+        position: absolute;
+        z-index: 1;
+    }
+
+    .title {
+        color: $color-blue;
+        font-size: 27px;
+        font-weight: 600;
+        line-height: 33px;
+        margin-bottom: 12px;
+    }
+
+    .search-field {
+        margin-top: 30px;
+        width: 100%;
+
+        @media screen and (max-width: 767px) {
+            margin-bottom: 30px;
+        }
+
+        ::placeholder { 
+            color: #cecece;
+          }
+
+        input {
+            width: 100%;
+            border: 1px solid #cecece;
+            border-radius: 5px;
+            height: 50px;
+            text-align: center;
+            color: $color-blue;
+            font-size: 18px;
+            line-height: 50px;
+            background-image: url('../../assets/images/inactive-search.svg');
+            background-repeat: no-repeat;
+            background-size: 24px 24px;
+            background-position-x: 23px;
+            background-position-y: center; 
+            text-align: start !important;
+            padding-left: 60px !important;
+            
+            &:focus {
+                box-shadow: none;
+                background-image: url('../../assets/images/Search.svg');
+            }
+        }
+    }
+
+    .current-location {
+        font-size: 14px;
+        line-height: 24px;
+        color: #bdbdbd;
+        margin-bottom: 4px;
+
+        img {
+            width: 24px;
+            height: 24px;
+            margin-top: -6px;
+        }
+
+        .country {
+            color: $color-blue;
+            font-size: 18px;
+            font-weight: 600;
+            line-height: 24px;
+        }
+    }
+
+    .examination-centres {
+        height: 50px;
+        width: 100%;
+        border-radius: 5px;
+        background-color: #cecece;
+        text-align: center;
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 50px;
+        color: $color-white;
+        background-image: url("../../assets/images/Study.svg");
+        background-repeat: no-repeat;
+        background-size: 20px 20px;
+        background-position-x: 30px;
+        background-position-y: center;
+        z-index: 80;
+        position: relative;
+
+        @media screen and (max-width: 1200px){
+            background-position-x: 15px;
+        }
+
+        @media screen and (max-width: 1000px){
+            background-image: none !important;
+        }
+
+        @media screen and (max-width: 767px) {
+            background-image: none !important;
+        }
+    }
+
+    .available {
+        background-color: $color-blue !important; 
+        cursor: pointer;
+    }
+    
+
+    .map-title {
+        margin-top: 73px;
+        margin-bottom: 32px;
+        color: $color-blue;
+        font-size: 18px;
+        line-height: 22px;
+
+        @media screen and (max-width: 767px) {
+            visibility: hidden;
+        }
+    }
+
+    .hidden {
+        @media screen and (max-width: 1000px) {
+            visibility: hidden !important;
+            width: 0px !important;
+            height: 0px !important;
+            display: none;
+        }
+    }
+
+
+ngb-typeahead-window {
+    width: calc(100% - 30px) !important;
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+    margin-top: 0px !important;
+    z-index: 100 !important;
+
+    .dropdown-item {
+        padding-top: 0px !important;
+        padding-bottom: 0px !important;
+        padding-left: 70px !important;
+        padding-right: 0px !important;
+        background-image: url("../../assets/images/Inactive.svg");
+        background-repeat: no-repeat;
+        background-size: 23px 22px;
+        background-position-x: 21px;
+        background-position-y: center;
+    }
+    
+    .dropdown-item.active, .dropdown-item:active {
+        background-color: $color-white !important;
+    }
+}
+
+.typeahead-template {
+    border-bottom: 1px solid #E8E8E8;
+    color: #838383;
+    font-family: 'Montserrat' !important;
+    font-size: 18px;
+    font-weight: 400 !important;
+    line-height: 22px;
+    padding-bottom: 13px;
+    padding-top: 13px;
+
+}
+
+
+
+.ngb-highlight {
+    font-family: 'Montserrat' !important;
+    font-weight: 400 !important;
+}
+
+}

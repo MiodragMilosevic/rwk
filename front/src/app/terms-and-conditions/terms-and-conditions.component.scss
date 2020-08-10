@@ -1,0 +1,98 @@
+@import "../../assets/styles/colors.scss";
+
+.terms-content {
+  margin-top: 65px !important;
+  min-height: 1100px;
+    &:before{
+      content: '';
+      background-image: url("../../assets/images/header-shape-2.png");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      top: calc(-100vw * 0.07);
+      left: calc(100vw * 0.37);
+      width: calc(100vw * 0.5);
+      height: calc(100vw * 0.2);
+      position: absolute;
+      z-index: 1;
+
+      @media screen and (min-width: 1440px) {
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        top: calc(-100vw * 0.09);
+        left: calc(100vw * 0.35);
+        width: calc(100vw * 0.5);
+        height: calc(100vw * 0.2);
+        position: absolute;
+        z-index: 1;
+    }
+    }
+
+   
+    padding-top: 50px;
+    padding-bottom: 56px;
+    margin-top: 10px;
+    z-index: 1;
+
+    .title {
+        color: $color-blue;
+        font-size: 25px;
+        font-family: "Montserrat";font-weight:600;
+        letter-spacing: 0.31px;
+        line-height: 30px;
+        text-align: justify;
+        margin-left: 20px;
+        margin-bottom: 30px;
+    }
+
+    .description {
+        color: $color-blue;
+        font-size: 16px;
+        letter-spacing: 0.2px;
+        line-height: 19px;
+        text-align: justify;
+    }
+
+    .bold {
+        font-family: "Montserrat";font-weight:600;
+    }
+
+    ol  {
+        counter-reset: second;
+        padding-inline-start: 0px !important;
+
+        ul li {
+          margin-bottom: 15px;
+          font-weight: 400;
+        }
+
+        ul {
+          counter-reset: first;
+        }
+
+        ul li::before {
+          content: '-';
+          counter-increment: first;
+        }
+      
+       li {
+        font-family: "Montserrat";font-weight:600;
+        list-style-type: none;
+        margin-bottom: 15px;
+      }
+       li::before {
+        counter-increment: second;
+        content: counter(second) ".0. ";
+        font-family: "Montserrat";font-weight:600;
+      }
+    }
+
+    ul {
+      padding-inline-start: 0px !important;
+    }
+
+      
+
+       
+}

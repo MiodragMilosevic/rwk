@@ -1,0 +1,143 @@
+<app-header *ngIf="levels && levels.length != 0" (update)="ngOnInit()" [levelData]="this.levels[this.instrumentIndex][levelIndex - 1]" [instrumentData]="this.currentInstrument" ></app-header>
+<app-header *ngIf="!levels || (levels && levels.length == 0)" (update)="ngOnInit()"  ></app-header>
+
+<div class="watch-video-content-wrapper" *ngIf="isLoading">
+    <div class="loader">
+        <img src="assets/images/loader.gif" alt="">
+    </div>
+</div>
+<div class="watch-video-content" *ngIf="logged && !isLoading">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="payment-title">
+                    <div class="payment-top">
+                        <a (click)="back()">
+                            <i class="fas fa-chevron-left left-arrow"></i>
+                            {{content?.back_to}}
+                            <span class="name">{{content?.videos}}</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="video">
+                    <div id="video">
+                    </div>
+                    <div id="modal" class="modal">
+                        <div class="modal-purchase">
+                            <div class="purchase">
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12 col-sm-12">
+                                        <div class="close" (click)="close()">
+                                            <i class="fas fa-times decoration"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12 col-sm-12">
+                                        <div class="purchase-text">
+                                            {{content?.proceed}}
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12">
+                                            <button class="purchase-button" (click)="purchase()">
+                                                <img src="assets/images/shopping.svg"/> {{content?.purchase}}
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="video-details">
+            <div class="row">
+                <div class="col-lg-7 col-md-12 col-sm-12 col-12">
+                    <div id="author" class="author">
+                        {{videos[this.index1]?.author}}
+                    </div>
+                    <div class="text">
+                    </div>
+
+                  <div>
+
+                  </div>
+                </div>
+                <div class="col-lg-5 col-md-12 col-sm-12 col-12 clearfix">
+                    <div class="place float-right" *ngIf="logged">
+                        <div class="total clearfix">
+                            <p class="label float-left">Total</p>
+                            <p id="number" class="amount float-right">{{'$' + videos[this.index1]?.price}}</p>
+                        </div>
+                        <div class="purchase-btn-wrapper">
+                            <button class="btn btn-purchase btn-block" (click)="purchaseVideo()">
+                                {{content?.purchase_this_video}}
+                            </button>
+                          <button *ngIf="isChina" class="watch-button btn btn-outline-info btn-block">
+                            <a href="https://v.youku.com/v_show/id_XNDIzMzQ3ODIwNA==.html?spm=a2h3j.8428770.3416059.1">Watch on Youku</a>
+                          </button>
+                          <div *ngIf="isChina" class="youku-barcode-wrapper">
+                            <p>Use Youku mobile app to scan and watch now!</p>
+                            <img class="youku-barcode" src="https://qr.youku.com/qr?sc=video_play&ac=open&ps={vid:%27XNDIzMzQ3ODIwNA==%27,spot:0,tp:1,cp:0,cpp:100049}&size=123" alt="">
+                          </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="title">
+                    {{content?.available_videos}}
+                </div>
+            </div>
+        </div>
+        <div class="card-list">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6" *ngFor="let video of videos let i = index;">
+                    <div class="card">
+                        <div class="picture-box">
+                            <img class="picture" src="{{video.img}}"/>
+                            <div class="hover-image-logged" *ngIf="logged">
+                                <div class="preview-button" (click)="preview(i)">
+                                    <img class="preview-icon" src="assets/images/play.svg"/>
+                                    <span>{{content?.preview}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="content">
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="price">
+                                        ${{video.price}}
+                                    </div>
+                                    <div class="duration" *ngIf="video.duration">
+                                        {{content?.duration}}: {{video.duration}}
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="name">
+                                        {{video.name}}
+                                    </div>
+                                    <div class="author1" *ngIf="video.author">
+                                        ({{video.author}})
+                                    </div>
+                                    <div class="content1" *ngIf="video.content">
+                                        {{video.content}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-footer *ngIf="logged || isLoading"></app-footer>

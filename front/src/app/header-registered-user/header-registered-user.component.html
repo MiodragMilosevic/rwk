@@ -1,0 +1,102 @@
+<div class="header">
+  <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" [routerLink]="['/home']" style="cursor: pointer;"><img class="picture"
+          src="assets/images/logo.svg" /></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="nav navbar-nav mr-auto">
+          <li class="nav-item" [routerLink]="['/my-videos']" routerLinkActive="active">
+            {{ pageContent?.videos}}
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right" *ngIf="supportLanguage && type === 1 && !china">
+          <li class="nav-item">
+            <div class="dropdown">
+              <button class="btn dropdown-toggle button-nav" type="button" id="dropdownMenuButton"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img class="flags-icon" src="assets/images/flags/uk.png">
+              </button>
+              <div class="dropdown-menu auto-margin" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item button-nav" (click)="setSpain()"><img class="flags-icon"
+                    src="assets/images/flags/es.png"></a>
+              </div>
+            </div>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right" *ngIf="supportLanguage && type === 2">
+          <li class="nav-item">
+            <div class="dropdown">
+              <button class="btn dropdown-toggle button-nav" type="button" id="dropdownMenuButton"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img class="flags-icon" src="assets/images/flags/es.png">
+              </button>
+              <div class="dropdown-menu auto-margin" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item button-nav" (click)="setUK()"><img class="flags-icon"
+                    src="assets/images/flags/uk.png"></a>
+              </div>
+            </div>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right" *ngIf="supportLanguage && type === 1 && china">
+          <li class="nav-item">
+            <div class="dropdown">
+              <button class="btn dropdown-toggle button-nav" type="button" id="dropdownMenuButton"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img class="flags-icon" src="assets/images/flags/uk.png">
+              </button>
+              <div class="dropdown-menu auto-margin" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item button-nav" (click)="setChina()"><img class="flags-icon"
+                    src="assets/images/flags/chinese.png"></a>
+              </div>
+            </div>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right" *ngIf="supportLanguage && type === 0">
+          <li class="nav-item">
+            <div class="dropdown">
+              <button class="btn dropdown-toggle button-nav" type="button" id="dropdownMenuButton"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img class="flags-icon" src="assets/images/flags/chinese.png">
+              </button>
+              <div class="dropdown-menu profile-item auto-margin" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item button-nav"><img class="flags-icon" src="assets/images/flags/uk.png"
+                    (click)="setUK()"></a>
+              </div>
+            </div>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li class="nav-item dropdown btn-group navbar-right profile-name center-margin" href="#" id="navbarProfileDropdown"
+            role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="dropdown-toggle profile-dropdown">{{ user?.first_name }}</span>
+            <div class="dropdown-menu " id="navbarProfileDropdown" aria-labelledby="navbarProfileDropdown">
+              <div class="user-options">
+                <div class="instrument-level-options" *ngIf="instrument && level">
+                  <div class="clearfix">
+                    <div class="float-left">
+                      <img src="{{instrument.photo.image.url}}" class="instrument-image" />
+                    </div>
+                    <div class="float-right">
+                      <span>{{level.name}}</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="name-options">
+                  <span>{{ user?.first_name + ' ' + user?.last_name}}</span>
+                </div>
+              </div>
+              <a class="dropdown-item profile-item" [routerLink]="['/profile']">{{ pageContent?.profile }}</a>
+              <a class="dropdown-item profile-item" [routerLink]="['/settings']">{{ pageContent?.settings }}</a>
+              <div class="dropdown-divider profile-divider"></div>
+              <a class="dropdown-item profile-item" (click)="logout()">{{ pageContent?.logout }}</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</div>

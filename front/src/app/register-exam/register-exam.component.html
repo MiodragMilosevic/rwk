@@ -1,0 +1,85 @@
+<app-header (update)="ngOnInit()"></app-header>
+
+<div class="centres-background">
+    <div class="container">
+        <div class="title">
+            {{content?.title}}
+        </div>
+        <div class="row">
+            <div class="col-lg-5 col-md-6 col-sm-12">
+                <div class="search-field" *ngIf="load">
+                    <input type="text" placeholder="{{content?.search_holder}}" class="form-control"
+                        [(ngModel)]="center" [ngbTypeahead]="search" [resultTemplate]="rt"
+                        [inputFormatter]="formatter" (input)="onSearchChange($event.target.value)"/>
+                </div>
+                <div class="international-centres" *ngIf="load">
+                    {{ content?.international_centres + ' ' + this.countryName }}
+                </div>
+            </div>
+            <div class="offset-lg-2 col-lg-5 col-md-6 col-sm-12">
+                <div class="selected-location" *ngIf="load">
+                    {{content?.selected_location}}:
+                    <img src="assets/images/location_pin.svg" />
+                    <span class="country">{{countryName}}</span>
+                </div>
+                <div id="regions_div" style="width: 300px; height: 200px;"></div>
+            </div>
+        </div>
+        <div class="row" *ngIf="load">
+            <div class="col-lg-5 col-md-6 col-sm-12">
+                <div class="contact-details">
+                    {{content?.contact_details}}
+                </div>
+                <div class="main-representative">
+                    {{ this.selectedCountry?.main_representative.name }}
+                </div>
+                <div class="email">
+                    {{content?.email}}: <a href="mailto:{{this.selectedCountry?.main_representative.email}}"
+                        target="_blank">{{ this.selectedCountry?.main_representative.email }}</a>
+                </div>
+                <div class="telephone">
+                    {{content?.phone}}: <a href="tel:{{this.selectedCountry?.main_representative.phone}}"
+                        target="_blank">{{ this.selectedCountry?.main_representative.phone }}</a>
+                </div>
+            </div>
+            <div class="col-lg-7 col-md-6 col-sm-12 center-details">
+                <div class="contact-details">
+                    {{content?.examination_centres}}:
+                </div>
+                <div class="center" *ngFor="let center of centres">
+                    <div class="title">
+                        {{ center.name }}
+                    </div>
+                    <div class="info">
+                        {{content?.director}}: {{ center.director }}
+                    </div>
+                    <div class="info">
+                        {{ center.address }}
+                    </div>
+                    <div class="info">
+                        {{content?.e_mail}}: <a href="mailto:{{center.email}}" target="_blank">{{ center.email }}</a>
+                    </div>
+                    <div class="info">
+                        {{content?.phone}}: <a href="tel:{{center.phone}}" target="_blank">{{ center.phone }}</a>
+                    </div>
+                    <div class="info">
+                        {{content?.website}}: <a href="https://{{ center.website }}"
+                            target="_blank">{{ center.website }}</a>
+                    </div>
+                    <div class="book-exam" *ngIf="approvedInstrument?.length > 0 && approvedLevel?.length > 0" (click)="bookExam(center)">
+                        Book exam
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #rt let-r="result" let-t="term">
+    <div class="typeahead-template" (click)="setCenter(r)">
+        <ngb-highlight [result]="r.name" [term]="t"></ngb-highlight>
+    </div>
+</ng-template>
+
+
+<app-footer></app-footer>

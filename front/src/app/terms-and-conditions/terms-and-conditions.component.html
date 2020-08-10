@@ -1,0 +1,64 @@
+<app-header *ngIf="levels && levels.length != 0" (update)="ngOnInit()" [levelData]="this.levels[this.instrumentIndex][levelIndex - 1]" [instrumentData]="this.currentInstrument" ></app-header>
+<app-header *ngIf="!levels || (levels && levels.length == 0)" (update)="ngOnInit()"  ></app-header>
+
+<div class="terms-content">
+  <div class="container">
+    <div class="title">
+      {{ content?.title }}
+    </div>
+    <div class="row">
+      <div class="offset-lg-1 col-lg-10 col-md-12 col-sm-12 description">
+        <ol>
+          <li>
+            {{ content?.subtitles[0] }}
+          </li>
+          <p *ngFor="let text of content?.description[0]">{{ text }}</p>
+          <li>
+            {{ content?.subtitles[1] }}
+          </li>
+          <p *ngFor="let text of content?.description[1]">{{ text }}</p>
+         <li>
+            {{ content?.subtitles[2] }}
+         </li>
+          <p *ngFor="let text of content?.description[2]">{{ text }}</p>
+         <li>
+            {{ content?.subtitles[3] }}
+         </li>
+         <p *ngFor="let text of content?.description[3]">{{ text }}</p>
+         <li>
+            {{ content?.subtitles[4] }}
+         </li>
+          <p *ngFor="let text of content?.description[4]">{{ text }}</p>
+          <ul>
+            <li *ngFor="let item of content?.items">{{ item }}</li>
+          </ul>
+         <li>
+            {{ content?.subtitles[5] }}
+         </li>
+          <p *ngFor="let text of content?.description[5]">{{ text }}</p>
+         <li>
+            {{ content?.subtitles[6] }}
+         </li>
+          <p *ngFor="let text of content?.description[6]">{{ text }}</p>
+         <li>
+            {{ content?.subtitles[7] }}
+         </li>
+          <p *ngFor="let text of content?.description[7]">{{ text }}</p>
+         <li>
+            {{ content?.subtitles[8] }}
+         </li>
+          <p *ngFor="let text of content?.description[8]">{{ text }}</p>
+         <li>
+            {{ content?.subtitles[9] }}
+         </li>
+          <p *ngFor="let text of content?.description[9]">{{ text }}</p>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<app-footer>
+
+</app-footer>

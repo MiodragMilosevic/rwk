@@ -1,0 +1,338 @@
+@import "../../assets/styles/colors.scss";
+
+
+.register-form {
+    background-color: #FFFFFF;	
+    box-shadow: 0 8px 18px 0 rgba(0,0,0,0.2);
+    width: 1100px;
+    .register-errors {
+        margin-left: 36px;
+        margin-right: 0px;
+        margin-top: 18px;
+        color: #E9138C;
+        font-size: 14px;
+        font-style: italic;
+        font-weight: 500;
+        line-height: 20px;
+        text-align: center;
+        border-right: 8px solid #E9138C;
+    }
+
+    .registerFormGroup {
+        margin-left: 20px;
+        margin-right: 20px;
+        margin-top: 20px;
+        .datepicker-input {
+            background: white;
+            color: $color-blue;
+            box-shadow: none;
+            box-sizing: border-box;
+            outline: none;    
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            padding: 0px;
+            padding-left: 10px;
+            -webkit-box-shadow: none;
+        }
+        
+        .calendar-icon {
+            filter: grayscale(100%) brightness(110%);
+        
+            .icon-image {
+                width: 1.2rem;
+            }
+        }
+    }
+
+    .back-button {
+        color: $color-black;
+        font-size: 14px;	
+        font-weight: 500;	
+        line-height: 18px;
+        margin-left: 30px;
+        margin-top: 30px;
+        content: '';
+        
+        @media screen and (max-width: 767px){
+            border: 1px solid white;
+            margin-left: 5px;
+        }
+
+        .back-button-text{
+            margin-left: 15px;
+            font-weight: 500;	
+            font-family: "Montserrat";font-weight:600;
+        }
+
+        button {
+            color: $color-black;
+            cursor: pointer;
+            background-color: $color-white;
+            border-color: $color-white;
+            font-weight: 500;	
+            font-family: "Montserrat";font-weight:600;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+
+        a {
+            color: $color-black;
+
+            &:hover {
+                text-decoration: none;
+            }
+        }
+    }
+
+    .register-paragraph {
+        margin-top: 10px;
+        margin-left: 30px;
+        margin-right: 50px;
+        color: $color-blue;
+        height: 234px;
+        overflow: hidden;
+        
+        @media screen and (max-width: 767px) {
+            margin-left: 19px;
+            margin-right: 10px;
+        }
+
+        .register-title {
+            font-size: 16px;	
+            font-weight: 500;	
+            font-family: "Montserrat";font-weight:600;
+            line-height: 26px;
+            margin-top: 20px;
+        }
+
+        .register-text {
+            font-size: 14px;
+            line-height: 18px;
+            margin-bottom: 40px;
+
+            span {
+                margin-top: 12px;
+                display: block;
+                margin-right: 44px;
+            }
+        }
+
+    }
+
+    .register-horizontal-line {
+        margin-top: 30px;
+        width: 90%;
+    }
+}
+
+.register-horizontal-line-big {
+    margin-top: -10px;
+    width: 95%;
+}
+
+.fee {
+    padding: 10px;
+    padding-left: 30px;
+    
+    @media screen and (max-width: 990px){
+        text-align: center;
+        padding-top: 0; 
+    }
+
+    .fee-text {
+        font-size: 17px;	
+        font-family: "Montserrat";
+        font-weight:600;
+        line-height: 20px;
+        color: $color-blue;
+        margin-left: 10px;
+        
+        @media screen and (max-width: 990px){
+            margin-top: 20px;
+            display: block;
+        }
+
+        @media screen and (max-width: 747px){
+            margin-top: 5px;
+            display: block;
+        }
+    }
+}
+
+.horizontal-line {
+    width: 100%;
+    height: 2px;
+    margin-top: 40px;
+    background-color: $color-pink;
+}
+
+.register-submit {
+    margin-left: 95px;
+    margin-bottom: 30px;
+    margin-top: 25px;
+
+    @media screen and (min-width: 800px) {
+        margin-left: 0px;
+    }
+
+    @media screen and (min-width: 1200px) {
+        margin-left: 95px;
+    }
+
+    @media screen and (max-width: 990px) {
+        margin-left: 0;
+        text-align: center;
+        margin-top: 15px;
+    }
+
+    .register-button{
+        border-radius: 5px;
+        background-color: $color-blue;
+        color: $color-white;
+        font-size: 16px;
+        font-weight: 600;	
+        line-height: 19px;	
+        text-align: center;
+        height: 40px;	
+        width: 180px;
+    }
+
+    .login-link {
+        margin-left: 25px;
+        font-size: 14px;	
+        line-height: 18px;
+        color: $color-black;
+        font-weight: 500;	
+        font-family: "Montserrat";
+        font-weight:600;
+
+        @media screen and (max-width: 990px) {
+            display: block;
+            margin: 15px;
+        }
+
+        button {
+            color: $color-blue;
+            cursor: pointer;
+            background-color: $color-white;
+            border-color: $color-white;
+            
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+
+        a {
+            color: $color-blue;
+            cursor: pointer;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}
+
+.mobile-margin {
+    @media screen and (max-width: 767px) {
+        margin-left: 20px;
+    }
+}
+
+.mobile-row {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+
+.checkbox {
+    border: 2px solid #D94699;
+    content: '';
+    height: 30px;
+    width: 35px;
+    line-height: 30px;
+    cursor: pointer;
+    color: #D94699;
+    border-radius: 5px;
+    margin-top: 10px;
+    display: inline-block;
+}
+
+.check {
+    margin-left: 20px;
+    @media screen and (max-width: 992px) {
+        margin-left: 0px;
+    }
+    @media screen and (max-width: 767px) {
+        margin-left: 20px;
+    }
+}
+
+
+.agree {
+    color: $color-blue;	
+    font-family: "Montserrat";	
+    font-size: 14px;	
+    line-height: 18px;
+    margin-left: 20px;
+    display: inline-block;
+    margin-top: 15px;
+
+    a {
+        text-decoration: underline;
+        cursor: pointer;  
+        color: $color-blue;	
+        font-family: "Montserrat";	
+        font-size: 14px;	
+        line-height: 18px;
+        margin-left: 20px;
+    }
+
+    .text-decoration {
+        text-decoration: underline;
+        cursor: pointer;
+    }
+}
+
+.flex-centered {
+    display: inline-flex;
+}
+
+.margin-left {
+    @media screen and (max-width: 991px) and (min-width: 967px){
+        margin-left: 263px;
+    }
+
+    @media screen and (max-width: 967px) and (min-width: 767px){
+        margin-left: 260px;
+    }
+   
+}
+
+
+.register-error {
+    margin-left: 40px;
+    margin-right: -77px;
+    margin-top: 25px;      
+    color: #E9138C;
+    font-size: 14px;
+    font-style: italic;
+    font-weight: 500;
+    line-height: 20px;
+    text-align: right;
+    content: '';
+    height: 30px;
+
+    @media screen and (max-width: 1200px){
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-top: 20px;
+    }
+
+    @media screen and (max-width: 767px){
+        margin-left: 20px;
+        margin-right: 20px;
+        margin-top: 15px;
+        text-align: center;
+    }
+}

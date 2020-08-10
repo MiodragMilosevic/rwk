@@ -1,0 +1,30 @@
+<app-header *ngIf="levels && levels.length != 0" (update)="ngOnInit()" [levelData]="this.levels[this.instrumentIndex][levelIndex - 1]" [instrumentData]="this.currentInstrument" ></app-header>
+<app-header *ngIf="!levels || (levels && levels.length == 0)" (update)="ngOnInit()"  ></app-header>
+
+<div class="fees-content">
+  <div class="container">
+    <div class="title">
+      {{ content?.title }}
+    </div>
+    <div class="row">
+      <div class="offset-lg-1 col-lg-10 col-md-12 col-sm-12 description">
+        <p *ngFor="let description of content?.description">
+          <span *ngIf="description.first">{{ description.first }}</span>
+          <span *ngIf="description.bold" class="bold">{{ description.bold }}</span>
+          <span *ngIf="description.second">{{ description.second }}</span>
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="offset-lg-3 col-lg-6 offset-md-2 col-md-8 col-sm-12">
+        <div class="fee-form">
+          <div class="title">
+            <span>{{ content?.services }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

@@ -1,0 +1,188 @@
+@import "../../assets/styles/colors.scss";
+
+.login-form {
+    z-index: 1000;
+
+    .login-username {
+        height: 40px;
+        border-radius: 5px;
+        position: relative;
+        margin-bottom: 10px;
+        background-color: $color-dark-blue;
+        color: $color-white;
+        text-align: center;
+        font-size: 16px;
+        line-height: 19px;
+        white-space: nowrap;
+        overflow: hidden;
+        margin-left: 20px;
+        margin-right: 20px;
+        width: calc(100% - 40px);
+        font-family: "Montserrat";font-weight:600;
+        font-weight: 500;
+        border: white;
+        @media screen and (max-width: 767px) {
+            font-size: calc(100vw * 0.024);
+        } 
+
+        @media screen and (max-width: 1199px) and (min-width: 768px) {
+            font-size: calc(100vw * 0.01);
+        }
+    }
+
+    .login-facebook {
+        height: 40px;
+        border: 1px solid #838383;
+        border-radius: 5px;
+        color: $color-white;
+        color: #34589D;
+        text-align: center;
+        font-size: 16px;
+        font-family: "Montserrat";font-weight:600;
+        font-weight: 500;
+        line-height: 19px;
+        white-space: nowrap;
+        overflow: hidden;
+        margin-left: 20px;
+        margin-right: 20px;
+        margin-bottom: 25px;
+        width: calc(100% - 40px);
+        background-color: #FFFFFF;
+        border: 1px solid black;
+
+        @media screen and (max-width: 767px) {
+            font-size: calc(100vw * 0.024);
+        } 
+
+        @media screen and (max-width: 1199px) and (min-width: 768px) {
+            font-size: calc(100vw * 0.01);
+        }
+
+        .login-icon-facebook {
+            margin-right: 20px;
+        }
+    }
+
+    .back-button {
+        margin-left: 19px;
+        margin-top: 25px;
+        margin-bottom: 27px;
+
+        button {
+            color: $color-black;
+            background-color: $color-white;
+            border-color: $color-white;
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 18px;
+            margin-bottom: 25px;
+            cursor: pointer;
+            font-family: "Montserrat";
+            font-weight:600;
+        }
+
+        a {
+            color: $color-black;
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 18px;
+            cursor: pointer;
+            margin-bottom: 25px;
+            font-family: "Montserrat";font-weight:600;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .left-arrow {
+            margin-right: 10.21px;
+        }
+    }
+
+    .login-errors {
+        margin-right: -15px;
+        margin-top: 25px;
+        color: $color-pink;
+        font-size: 14px;
+        font-style: italic;
+        font-weight: 500;
+        line-height: 20px;
+        text-align: center;
+        border-right: 8px solid $color-pink;
+
+
+        @media screen {
+            margin-top: 5px; 
+            margin-bottom: 20px;
+        }   
+    }
+
+    .login-title {
+        color: $color-black;
+        font-family: "Montserrat";font-weight:600;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 18px;
+        margin-left: 30px;
+        margin-top: 30px;
+    }
+
+    .btn{
+        background-repeat: no-repeat;
+        background-position-x: 30px;
+        background-position-y: center;   
+        margin-left: 20px;
+        margin-right: 20px;
+        width: calc(100% - 40px);
+        height: 50px;
+        border-radius: 5px;
+        margin-bottom: 25px;
+        font-size: 16px;
+        font-weight: 600;
+        font-family: "Montserrat";
+        text-align: center;          
+        
+      }
+
+    .login-username {
+        @extend .btn;
+        background-color: $color-dark-blue;
+        color: $color-white;
+        background-image: url('../../assets/images/icon-user.svg');
+        
+        @media screen and (max-width: 1200px) and (min-width: 767px) {
+        background-image: none;
+        }
+
+        @media screen and (max-width: 767px) {
+        font-size: 15px;
+        background-position-x: 8px;
+        }
+
+        @media screen and (max-width: 790px ) and (min-width: 767px) {
+        font-size: 12px;
+        }
+
+    }
+
+    .login-facebook {
+        @extend .btn;
+        color: #34589D;
+        background-color: #ffffff;
+        background-image: url('../../assets/images/F.svg');
+
+        @media screen and (max-width: 1200px) and (min-width: 767px) {
+        background-image: none;
+        }
+
+        @media screen and (max-width: 790px ) and (min-width: 767px) {
+        font-size: 12px;
+        }
+
+        @media screen and (max-width: 767px) {
+        font-size: 14px;
+        background-position-x: 8px;
+        }
+    }
+}

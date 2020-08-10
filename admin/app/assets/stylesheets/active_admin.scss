@@ -1,0 +1,150 @@
+//= require_self
+
+// SASS variable overrides must be declared before loading up Active Admin's styles.
+//
+// To view the variables that Active Admin provides, take a look at
+// `app/assets/stylesheets/active_admin/mixins/_variables.css.scss` in the
+// Active Admin source.
+//
+// For example, to change the sidebar width:
+// $sidebar-width: 242px;
+
+// Active Admin's got SASS!
+
+$pending-color: #FF9900;
+$rejected-color: #FF0000;
+$approved-color: #08A510;
+
+.status_tag {
+  &.pending { background: $pending-color; }
+  &.rejected { background: $rejected-color; }
+  &.approved { background: $approved-color; }
+}
+
+$am-theme-primary: #00689f;
+$am-theme-accent: #7dd2f7;
+$am-theme-accent-fallback: #ff7547;
+
+@import "active_admin/mixins";
+//@import "active_admin/base";
+@import "active_material";
+
+
+// Overriding any non-variable SASS must be done after the fact.
+// For example, to change the default status-tag color:
+//
+//   .status_tag { background: #6090DB; }
+
+
+legend {
+  display: none !important;
+}
+
+form fieldset > ol > li fieldset:not(.has_many_fields) ol li
+{
+  margin-top: 20px !important;
+  margin-bottom: 20px !important;
+
+}
+
+
+form fieldset > ol > li fieldset:not(.has_many_fields) ol {
+  padding: 0 5% 0 5%;
+}
+
+form fieldset > ol > li fieldset.has_many_fields ol {
+  width: 90%;
+}
+
+header {
+  display: none;
+}
+
+.errors {
+  color: red;
+}
+
+.admin_instruments {
+
+   .menu li:nth-child(0) {
+     display: none;
+   }
+
+   .menu li:nth-child(1) {
+     display: none;
+   }
+
+   .menu li:nth-child(2) {
+     display: none;
+   }
+
+   .menu li:nth-child(3) {
+     display: none;
+   }
+
+   .menu li:nth-child(4) {
+     display: none;
+   }
+
+   .menu li:nth-child(5) {
+     display: none;
+   }
+
+   .menu {
+     .insert.default {
+       display: none;
+     }
+
+     .expand {
+       display: none;
+     }
+   }
+
+   .dragarea {
+     display: none;
+   }
+
+ }
+
+
+.admin_levels {
+
+  .menu li:nth-child(0) {
+    display: none;
+  }
+
+  .menu li:nth-child(1) {
+    display: none;
+  }
+
+  .menu li:nth-child(2) {
+    display: none;
+  }
+
+  .menu li:nth-child(3) {
+    display: none;
+  }
+
+  .menu li:nth-child(4) {
+    display: none;
+  }
+
+  .menu li:nth-child(5) {
+    display: none;
+  }
+
+  .menu {
+    .insert.default {
+      display: none;
+    }
+
+    .expand {
+      display: none;
+    }
+  }
+
+  .dragarea {
+    display: none;
+  }
+
+}

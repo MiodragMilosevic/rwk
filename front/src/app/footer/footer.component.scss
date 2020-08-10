@@ -1,0 +1,111 @@
+@import "../../assets/styles/colors.scss";
+
+
+
+    .footer-line {
+        margin-top: 36px;
+        height: 1px;
+        position: relative;
+        background-color: $color-blue;
+
+        &:before{
+            content: url("../../assets/images/footerwave.png");
+            position: absolute;
+            z-index: 100;
+            top: -24px;
+            left: 0;
+        }
+    }
+
+    .contact {
+        margin-top: 40px;
+        margin-bottom: 40px;
+
+        .contact-us-at {
+            border-left: 1px solid $color-blue;
+            padding-left: 29px;
+        
+            @media screen and (max-width: 767px) {
+                border-left: none;
+                text-align: center;
+                padding-left: 0px; 
+            }
+
+            .title {
+            color: $color-blue;
+            font-size: 11px;
+            font-family: 'Montserrat';
+            font-weight: 600;
+            line-height: 20px; 
+            
+            }
+
+            .info {
+            color: $color-blue;
+            font-size: 11px;
+            line-height: 14px; 
+            
+            }
+        }
+
+        .terms {
+            height: 100%;
+            border-left: 1px solid $color-blue;
+            padding-left: 29px;
+            color: $color-blue;
+            font-size: 11px;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+
+            @media screen and (max-width: 767px) {
+                border-left: none;
+                text-align: center;
+                padding-left: 0px; 
+            }
+        }
+    }
+
+    .links-column{
+        overflow: hidden;
+        position: relative;
+        display:flex; 
+        align-items:center; 
+        margin-bottom: 15px;
+        
+        @media screen and (max-width: 767px) {
+            text-align: center !important;
+            display: inline;
+        }
+
+        img {
+            width: 30px;
+            height: 30px;
+        }
+
+        .facebook-icon {
+            position: relative;
+            float: left;
+            margin-right: 15px;
+
+            @media screen and (max-width: 767px) {
+                float: none !important;
+                display: inline !important;
+            }
+        }
+
+        .youtube-icon {
+            position: relative;
+            float: left;
+
+            @media screen and (max-width: 767px) {
+                float: none !important;
+                display: inline !important;
+            }
+        }
+    }
+
+    a {
+        color: $color-blue;
+    }
+

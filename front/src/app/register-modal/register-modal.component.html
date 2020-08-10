@@ -1,0 +1,163 @@
+<div class="register-form">
+  <div class="row">
+    <div class="col-lg-4 col-md-4 col-sm-12">
+      <div class="back-button">
+        <button (click)="activeModal.dismiss('Close clicked')" style="border: white;"><i
+            class="fas fa-chevron-left"></i><span class="back-button-text">{{content?.back_button_text}}</span></button>
+      </div>
+    </div>
+    <div class="offset-lg-4 offset-md-2 col-lg-4 col-md-6 col-sm-12">
+      <div class="register-errors" *ngIf="error">
+        {{content?.register_errors}}
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-12 col-sm-12">
+      <div class="register-paragraph">
+        <div class="register-title">
+          {{content?.register_title}}
+        </div>
+        <div class="register-text">
+          <span *ngFor="let text of content?.register_text">{{text}}</span>
+        </div>
+      </div>
+      <hr class="register-horizontal-line" />
+    </div>
+    <div class="col-lg-8 col-md-12 col-sm-12">
+      <form [formGroup]="registerFormGroup" class="registerFormGroup">
+        <div class="row">
+          <div class="col-lg-6 col-md-6 col-sm-12">
+            <div class="form-group">
+              <input formControlName="firstName" type="text" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && formGroup.firstName.errors }"
+                placeholder="{{content?.form_first_name}}" />
+              <div *ngIf="submitted && formGroup.firstName.errors" class="invalid-feedback">
+                <span *ngIf="formGroup.firstName.errors?.required">{{content?.form_first_name_error}}</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-12">
+            <div class="form-group">
+              <input formControlName="emailAddress" type="text" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && formGroup.emailAddress.errors }"
+                placeholder="{{content?.form_email_address}}" />
+              <div *ngIf="submitted && formGroup.emailAddress.errors" class="invalid-feedback">
+                <span *ngIf="formGroup.emailAddress.errors?.required">{{content?.form_email_address_error}}</span>
+                <span *ngIf="formGroup.emailAddress.errors?.email"
+                  class="elipsis">{{content?.form_email_address_invalid_mail}}</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-12">
+            <div class="form-group">
+              <input formControlName="lastName" type="text" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && formGroup.lastName.errors }"
+                placeholder="{{content?.form_last_name}}" />
+              <div *ngIf="submitted && formGroup.lastName.errors" class="invalid-feedback">
+                <span *ngIf="formGroup.lastName.errors?.required">{{content?.form_last_name_error}}</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-12">
+            <div class="form-group">
+              <input formControlName="username" type="text" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && formGroup.username.errors }"
+                placeholder="{{content?.form_username}}" />
+              <div *ngIf="submitted && formGroup.username.errors" class="invalid-feedback">
+                <span *ngIf="formGroup.username.errors?.required">{{content?.form_username_error}}</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-12">
+            <div class="form-group">
+              <div class="input-group">
+                <input [maxDate]="today" [startDate]="startDate" class="form-control datepicker-input"
+                  placeholder="{{content?.form_date_of_birth}}"
+                  [ngClass]="{ 'is-invalid': submitted && formGroup.dateOfBirth.errors }" name="dp"
+                  formControlName="dateOfBirth" ngbDatepicker #d="ngbDatepicker" [readonly]="true" (click)="d.toggle()">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary calendar calendar-icon" (click)="d.toggle()"
+                    type="button"><img src="assets/images/calendar-icon.png" class="icon-image" /></button>
+                </div>
+                <div *ngIf="submitted && formGroup.dateOfBirth.errors" class="invalid-feedback">
+                  <span *ngIf="formGroup.dateOfBirth.errors?.required">{{content?.form_date_of_birth_error}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-12">
+            <div class="form-group">
+              <input formControlName="password" type="password" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && formGroup.password.errors }"
+                placeholder="{{content?.form_password}}" />
+              <div *ngIf="submitted && formGroup.password.errors" class="invalid-feedback">
+                <span *ngIf="formGroup.password.errors?.required">{{content?.form_password_error}}</span>
+                <span *ngIf="formGroup.password.errors?.minlength">{{content?.form_password_error_length}}</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-12">
+            <div class="form-group">
+              <input formControlName="telephone" type="text" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && formGroup.telephone.errors }"
+                placeholder="{{content?.form_telephone}}" />
+              <div *ngIf="submitted && formGroup.telephone.errors" class="invalid-feedback">
+                <span *ngIf="formGroup.telephone.errors?.required">{{content?.form_telephone_error}}</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-12">
+            <div class="form-group">
+              <input formControlName="confirmPassword" type="password" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && formGroup.confirmPassword.errors }"
+                placeholder="{{content?.form_confirm_password}}" />
+              <div *ngIf="submitted && formGroup.confirmPassword.errors" class="invalid-feedback">
+                <span *ngIf="formGroup.confirmPassword.errors?.required">{{content?.form_confirm_password_error}}</span>
+                <span
+                  *ngIf="formGroup.confirmPassword.errors?.minlength">{{content?.form_confirm_password_error_length}}</span>
+                <span *ngIf="formGroup.confirmPassword.errors?.mustMatch">{{content?.must_match}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+      <hr class="register-horizontal-line-big" />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-4 col-md-6 col-sm-12">
+      <div class="fee">
+        <img class="fee-icon" src="assets/images/FeeIcon.svg" />
+        <span class="fee-text">{{content?.fee_text}}</span>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-12 flex-centered">
+      <label id="checkbox" class="checkbox check" (click)="labelClick()">
+        <span *ngIf="mark" style="margin-left: 5px;">
+          <i class="fas fa-check"></i>
+        </span>
+      </label>
+      <label class="agree">{{content?.agree}} <a class="text-decoration" target="_blank" [routerLink]="['/terms-and-conditions']">{{content?.terms_conditions}}</a></label>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-12 flex-centered margin-left">
+      <label id="checkbox" class="checkbox mobile-margin" (click)="labelClick1()">
+        <span *ngIf="mark1" style="margin-left: 5px;">
+          <i class="fas fa-check"></i>
+        </span>
+      </label>
+      <label class="agree">{{content?.agree}} <a class="text-decoration" target="_blank" [routerLink]="['/privacy']" >{{content?.service}}</a></label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-7 col-md-6 col-sm-12" style="height: 45px;">
+      <div class="register-error" *ngIf="termsError">
+        {{content?.term_error}}
+      </div>
+    </div>
+    <div class="col-lg-5 col-md-6 col-sm-12">
+      <div class="register-submit">
+        <button class="btn register-button" (click)="register()">{{content?.register}}</button>
+        <span class="login-link">{{content?.login_link}} <a (click)="login()">{{content?.login_link_click}}</a></span>
+      </div>
+    </div>
+  </div>
+</div>

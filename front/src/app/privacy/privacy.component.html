@@ -1,0 +1,65 @@
+<app-header *ngIf="levels && levels.length != 0" (update)="ngOnInit()" [levelData]="this.levels[this.instrumentIndex][levelIndex - 1]" [instrumentData]="this.currentInstrument" ></app-header>
+<app-header *ngIf="!levels || (levels && levels.length == 0)" (update)="ngOnInit()"  ></app-header>
+
+<div class="privacy-content">
+  <div class="container">
+    <div class="title">
+      {{ content?.title }}
+    </div>
+    <div class="row">
+      <div class="offset-lg-1 col-lg-10 col-md-12 col-sm-12 description">
+        <p *ngFor="let text of content?.description">{{ text }}</p>
+        <p class="underline">
+          {{ content?.subtitles[0] }}
+        </p>
+        <p class="bold">
+            {{ content?.bold_title }}
+        </p>
+        <p>
+            <span *ngFor="let item of content?.lists[0]">
+                - {{ item }} <br>
+              </span>
+        </p>
+        <p class="underline">
+            {{ content?.subtitles[1] }}
+        </p>
+        <p>
+            {{ content?.paragraphs[0] }}
+        </p>
+        <p>
+          <span *ngFor="let item of content?.lists[1]">
+            - {{ item }} <br>
+          </span>
+        </p>
+        <p class="underline">
+            {{ content?.subtitles[2] }}
+        </p>
+        <p>
+            {{ content?.paragraphs[1] }}
+        </p>
+        <p class="underline">
+            {{ content?.subtitles[3] }}
+        </p>
+        <p>
+            {{ content?.paragraphs[2] }}
+        </p>
+        <p>
+            {{ content?.paragraphs[3] }}
+        </p>
+        <p class="underline">
+            {{ content?.subtitles[3] }}
+        </p>
+        <p>
+            {{ content?.paragraphs[4]}}
+        </p>
+        <p>
+            {{ content?.paragraphs[5] }}
+        </p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<app-footer>
+</app-footer>

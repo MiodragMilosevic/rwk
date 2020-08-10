@@ -1,0 +1,309 @@
+<app-header *ngIf="levels && levels.length != 0" (update)="ngOnInit()" [levelData]="this.levels[this.instrumentIndex][levelIndex - 1]"
+    [instrumentData]="this.currentInstrument"></app-header>
+<app-header *ngIf="!levels || (levels && levels.length == 0)" (update)="ngOnInit()"></app-header>
+
+<div class="content" *ngIf="loadPage">
+    <div class="login-header">
+        <ngb-carousel [showNavigationIndicators]="false">
+            <ng-template ngbSlide>
+                <img src="assets/images/header/Slider1.jpg">
+            </ng-template>
+            <ng-template ngbSlide>
+                <img src="assets/images/header/Slider2.png">
+            </ng-template>
+            <ng-template ngbSlide>
+                <img src="../assets/images/header/Slider3.jpg">
+            </ng-template>
+            <ng-template ngbSlide>
+                <img src="../assets/images/header/Slider4.jpg">
+            </ng-template>
+        </ngb-carousel>
+        <div class="login-header-left">
+            <img src="assets/images/Group 5.png" />
+        </div>
+        <h3 id="login-header-tittle" class="login-header-title">
+            <ngb-carousel [showNavigationIndicators]="false">
+                <ng-template ngbSlide>
+                    <span>{{content?.login_header_title[0]}}</span>
+                </ng-template>
+                <ng-template ngbSlide>
+                    <span>{{content?.login_header_title[1]}}</span>
+                </ng-template>
+                <ng-template ngbSlide>
+                    <span>{{content?.login_header_title[3]}}</span>
+                </ng-template>
+                <ng-template ngbSlide>
+                    <span> {{content?.login_header_title[2]}}</span>
+                </ng-template>
+            </ngb-carousel>
+        </h3>
+    </div>
+    <div class="login">
+        <div class="login-content">
+            <div class="container">
+                <div class="row">
+                    <div class="offset-lg-1 offset-md-1 offset-sm-1 col-lg-10 col-md-10 col-sm-10">
+                        <div class="row">
+                            <div class="col-lg-7 col-md-6 col-sm-12">
+                                <div class="basic-information">
+                                    <p [innerHTML]="i === 0 ? boldFirst(info).toString() : info"
+                                        *ngFor="let info of content?.basic_information;let i = index">
+                                    </p>
+                                </div>
+                                <div class="language-information">
+                                    <div class="language-title">{{content?.language_title}}</div>
+                                    <div class="language-types">
+                                        <p *ngFor="let language of content?.language_types"
+                                            [innerHTML]="boldFirst(language).toString()"></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-5 col-md-6 col-sm-12 login-form">
+                                <div *ngIf="page === 'homePage'">
+                                    <div class="login-title">{{content?.login_title}}</div>
+                                    <div class="login-button">
+                                        <button class="login-username" (click)="loginUsernamePage()">
+                                            {{content?.login_username}}
+                                        </button>
+                                        <button class="login-facebook" (click)="loginViaFacebook()"
+                                            *ngIf="china == false">
+                                            {{content?.login_facebook}}
+                                        </button>
+                                        <div *ngIf="china == true">
+                                            <span class="register">{{content?.register_link}}</span>
+                                            <button class="login-register" (click)="registerPage()">
+                                                {{content?.create_new_account}}
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="register-link" *ngIf="china == false">
+                                        {{content?.register_link}} <b><a
+                                                [routerLink]="['/register']">{{content?.register_link_active}}</a></b>
+                                    </div>
+                                    <div class="register-info">
+                                        {{content?.register_info}}
+                                    </div>
+                                </div>
+                                <div *ngIf="page === 'loginUsernamePage'">
+                                    <div class="row">
+
+                                        <div class="col-lg-4 col-md-10 col-sm-10">
+                                            <div class="back-button">
+
+                                                <a (click)="startPage()">
+                                                    <i class="fas fa-chevron-left left-arrow"></i>
+                                                    {{content?.back_button}}
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-8 col-md-12 col-sm-12">
+                                            <div class="login-errors" *ngIf="invalidCredentials">
+                                                {{content?.login_errors}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <form [formGroup]="loginForm" (ngSubmit)="loginSubmit()">
+                                        <div class="form-group">
+                                            <input (keyup)="invalidCredentials = false" formControlName="username"
+                                                type="text" class="form-control input-field"
+                                                placeholder="{{content?.your_username}}" />
+                                        </div>
+                                        <div class="form-group">
+                                            <input (keyup)="invalidCredentials = false" formControlName="password"
+                                                type="password" class="form-control input-field"
+                                                placeholder="{{content?.enter_password}}" />
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-6 col-md-12 col-sm-7 login-button-div">
+                                                <input type="submit" value="{{content?.login_title}}"
+                                                    class="login-button-form"
+                                                    [ngClass]="{'purple-button': !invalidCredentials, 'pink-button': invalidCredentials}" />
+                                            </div>
+                                            <div class="col-lg-6 col-md-12 col-sm-5 register-link-form">
+                                                <span>
+                                                    {{content?.register_link}}
+                                                    <a
+                                                        [routerLink]="['/register']">{{content?.register_link_active}}</a>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="forgot-password-form">
+                                            <a (click)="forgotPasswordPage()">{{ content?.forgot_password_text }}</a>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div *ngIf="page == 'forgotPasswordPage'">
+                                    <div class="back-button">
+                                        <a (click)="startPage()">
+                                            <i class="fas fa-chevron-left left-arrow"></i>
+                                            {{content?.back_button}}
+                                        </a>
+                                    </div>
+                                    <div class="forgot-password-email-text">
+                                        <span *ngFor="let paragraph of content?.forgot_password">{{paragraph}}</span>
+                                    </div>
+                                    <form [formGroup]="forgotPasswordForm" (ngSubmit)="forgotPasswordSubmit()">
+                                        <div class="form-group">
+                                            <input formControlName="email" type="text" class="form-control input-field"
+                                                placeholder="{{content?.enter_email_address}}" />
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-7 col-md-12 col-sm-7">
+                                                <input type="submit" value="{{content?.next}}" class="login-button-form"
+                                                    [ngClass]="{'purple-button': !invalidCredentials, 'pink-button': invalidCredentials}" />
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div *ngIf="page == 'emailSentPage'" class="email-sent">
+                                    <div class="text">
+                                        {{content?.text_email_before}} {{forgotPasswordForm.controls.email.value}}.
+                                        {{content?.text_email_after}}
+                                    </div>
+                                    <div class="note">
+                                        <span>{{content?.email_received}}</span>
+                                        <span>{{content?.email_send}} <a
+                                                (click)="resendEmail()">{{content?.email_link}}</a>
+                                            {{content?.email}}</span>
+                                    </div>
+                                </div>
+                                <div *ngIf="page === 'userLoggedIn'" class="logged-user">
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12">
+                                            <div class="profile-text">{{content?.my_profile}}</div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12">
+                                            <div class="user-name">
+                                                {{ user?.first_name + ' ' + user?.last_name }}
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-12 col-sm-12">
+                                            <div class="image-button" *ngIf="!imagePreview">
+                                                <div class="profile-photo-wrapper">
+                                                    <div class="image-button">
+                                                        <img src="assets/images/Upload_pic.png" class="avatar" />
+                                                    </div>
+                                                    <span class="upload-text">{{pageContent?.upload_picture}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="image-button" *ngIf="imagePreview">
+                                                <img *ngIf="imagePreview" src="{{ imagePreview }}"
+                                                    class="profile-photo-wrapper" />
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-6 col-sm-12 text-center">
+                                            <div class="instrument-wrapper" *ngIf="currentInstrument">
+                                                <a [routerLink]="['/profile']">
+                                                    <img src="{{currentInstrument?.photo?.image.url}}"
+                                                        class="instrument-image" />
+                                                </a>
+                                            </div>
+                                            <div class="instrument-text" *ngIf="currentInstrument">
+                                                {{ currentInstrument?.name }}
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-6 col-sm-12 text-center">
+                                            <a [routerLink]="['/profile']">
+                                                <div class="level-wrapper">
+                                                    <span>{{ levelIndex }}</span>
+                                                </div>
+                                            </a>
+                                            <div class="level-text">Level</div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12">
+                                            <div class="classroom" (click)="classroom()">
+                                               {{ content?.classroom}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <hr class="horizontal-line">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="instruments">
+                <div class="instruments-header">
+                    {{content?.instruments_header}}
+                </div>
+                <div class="instruments-list">
+                    <div class="instrument" *ngFor="let instrument of instruments; let i = index">
+                        <div class="image-wrapper">
+                            <img src="{{instrument.photo?.image.url}}" (click)="chooseInstrument(i)" />
+                        </div>
+                        <div class="instrument-name">{{instrument.name}}</div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="articles">
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-sm-12 article" *ngFor="let article of content?.article">
+                        <div class="article-header" *ngIf="article.video">
+                            <img src="assets/images/news_pic.png" class="article-image">
+                            <div class="play-button">
+                                <img src="assets/images/play_video_btn.png" />
+                            </div>
+                        </div>
+                        <img src="assets/images/video_pic.png" class="article-image" *ngIf="!article.video">
+                        <span class="article-title">{{article.article_title}}</span>
+                        <div class="article-content">
+                            {{article.article_content}}
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12 download">
+                        <div class="download-logo">
+                            <img src="assets/images/logo.svg" />
+                        </div>
+                        <div class="download-text">{{ content?.download_our_app }}</div>
+                        <div class="download-links">
+                            <div class="row mobile-row">
+                                <div class="col-lg-6 col-md-6 col-sm-12 first-link">
+                                    <button class="download-link-play">
+                                        <img src="assets/images/Android.svg" class="download-image" />
+                                    </button>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 second-link">
+                                    <button class="download-link-app">
+                                        <img src="assets/images/Apple.svg" class="download-image" />
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="players">
+                <div class="player" *ngFor="let player of content?.players" [routerLink]="['/videos']">
+                    <img src="assets/images/play.png" class="player-logo" />
+                    <div class="player-info">
+                        <div class="player-header">
+                            {{ player.player_header}}
+                        </div>
+                        <div class="player-date">
+                            {{ player.player_date}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer class="footer"></app-footer>
+
+<div *ngIf="cookie" id="alert" class="alert alert-warning alert-dismissible fade show text-center alert-rectangle"
+    role="alert" [ngStyle]="{'top': 'calc(100vh - ' + 60 + 'px)' }" (resized)="onResized($event)"
+    (scroll)="onWindowScroll($event)">
+    <div class="text">{{content?.cookie_text}}</div>
+    <button type="button" class="button-accept" data-dismiss="alert">{{content?.accept_cookie}}</button>
+    <button type="button" class="button-close" data-dismiss="alert">
+        {{content?.cancel}}
+    </button>
+</div>

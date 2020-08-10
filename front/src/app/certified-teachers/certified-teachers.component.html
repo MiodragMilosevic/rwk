@@ -1,0 +1,29 @@
+<app-header *ngIf="levels && levels.length != 0" (update)="ngOnInit()" [levelData]="this.levels[this.instrumentIndex][levelIndex - 1]" [instrumentData]="this.currentInstrument" ></app-header>
+<app-header *ngIf="!levels || (levels && levels.length == 0)" (update)="ngOnInit()"  ></app-header>
+<div class="teachers-content">
+  <div class="container">
+    <div class="title">
+      {{ content?.title }}
+    </div>
+    <div class="row">
+      <div class="offset-lg-1 col-lg-5 col-md-6 col-sm-6 category">
+        <div class="title">
+          {{ content?.advanced }}
+        </div>
+        <ul>
+          <li *ngFor="let teacher of content?.advanced_teachers">{{ teacher }}</li>
+        </ul>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-6 category">
+        <div class="title">
+          {{content?.intermediate}}
+        </div>
+        <ul>
+          <li *ngFor="let teacher of content?.intermediate_teachers">{{ teacher }}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

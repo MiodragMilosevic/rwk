@@ -1,0 +1,46 @@
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12">
+    <div class="return">
+      <a (click)="activeModal.dismiss('Close clicked')">
+        <i class="fas fa-chevron-left left-arrow"></i>
+        <span>{{content?.back_button}}</span>
+      </a>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12">
+    <div class="title">{{content?.title}}</div>
+  </div>
+  <div class="col-lg-12 col-md-12 col-sm-12">
+    <div class="content">
+      {{content?.content}}
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12">
+    <form [formGroup]="licenceCodeForm">
+      <div class="form-group">
+        <input formControlName="code" type="text" class="form-control margins margins-top"
+          [ngClass]="{ 'is-invalid': submitted && formGroup.code.errors }" placeholder="{{content?.form_code}}" />
+        <div *ngIf="submitted && formGroup.code.errors" class="invalid-feedback margins">
+          <span *ngIf="formGroup.code.errors?.required">
+            {{content?.form_error}}
+          </span>
+        </div>
+      </div>
+      <div class="error-div">
+        <span class="error" *ngIf="errorDisplay"><span class="offset">{{error}}</span></span>
+      </div>
+      <div class="form-group text-right margins-bottom">
+        <button class="activate" type="button" (click)="activate()" *ngIf="!disabled">
+          {{content?.button_activate}}
+        </button>
+        <button class="activate-disabled" type="button" (click)="activate()" *ngIf="disabled">
+          {{content?.button_activate}}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

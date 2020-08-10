@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
+  </head>
+  <body>
+    <h2>Hi, <%= @user.first_name %>!</h2>
+    <h5>You've been invited to join Wagner.</h5>
+    <p>To activate your account, please click on the link below:</p>
+
+    <a href="<%= Rails.application.config.frontend_base_url + '/' + @token + '/confirm_account' %>">Activate</a>
+
+    <p>This link will be active for 15 minutes.</p>
+  </body>
+</html>

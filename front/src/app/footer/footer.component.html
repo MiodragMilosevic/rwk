@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="footer-line"></div>
+  <div class="row contact">
+    <div class="offset-lg-1 offset-md-1 col-lg-2 col-md-2 col-sm-12 links-column">
+      <div class="facebook-icon">
+        <a href="#" target="_blank"><img src="assets/images/Facebook.svg" /></a>
+      </div>
+      <div class="youtube-icon">
+        <a href="https://www.youtube.com/channel/UCave2oPOuugXJnEB_3Us7HA" target="_blank"><img src="assets/images/Youtube.svg" /></a>
+      </div>
+    </div>
+    <div class="offset-lg-4 offset-md-4 col-lg-3 col-md-3 col-sm-12">
+      <div class="contact-us-at">
+        <div class="title">
+          {{content?.title}}
+        </div>
+        <div class="info">
+          <span><a href="mailto:{{content?.info_mail}}" target="_top">{{content?.info_mail}}</a></span>
+          <br>
+          <span>{{content?.info_text}}&nbsp;</span>
+          <br>
+          <span><a href="http://wagner-ime.org" target="_blank">{{content?.info_link}}</a></span>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-2 col-md-2 col-sm-12">
+      <div class="terms">
+        <span><a [routerLink]="['/terms-and-conditions']" target="_blank">{{content?.terms_and_conditions}}</a></span>
+        <span><a [routerLink]="['/privacy']" target="_blank">{{content?.privacy}}</a></span>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+<app-header *ngIf="levels && levels.length != 0" (update)="ngOnInit()" [levelData]="this.levels[this.instrumentIndex][levelIndex - 1]" [instrumentData]="this.currentInstrument" ></app-header>
+<app-header *ngIf="!levels || (levels && levels.length == 0)" (update)="ngOnInit()"  ></app-header>
+<div class="news-content">
+  <div class="container">
+    <div class="title">
+      {{ content?.title }}
+    </div>
+    <div class="row">
+      <div class="offset-lg-1 col-lg-10 col-md-12 col-sm-12 description">
+        <p [innerHtml]="content?.html"></p>
+        <p>
+          <span class="bold">{{ content?.quote }}</span>{{ content?.author }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

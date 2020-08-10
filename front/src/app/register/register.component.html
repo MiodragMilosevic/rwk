@@ -1,0 +1,276 @@
+<app-header (update)="ngOnInit()"></app-header>
+<div class="content">
+  <div class="register-header">
+    <ngb-carousel [showNavigationIndicators]="false">
+      <ng-template ngbSlide>
+        <img src="assets/images/header/Slider1.jpg">
+      </ng-template>
+      <ng-template ngbSlide>
+        <img src="assets/images/header/Slider2.png">
+      </ng-template>
+      <ng-template ngbSlide>
+        <img src="../assets/images/header/Slider3.jpg">
+      </ng-template>
+      <ng-template ngbSlide>
+        <img src="../assets/images/header/Slider4.jpg">
+      </ng-template>
+    </ngb-carousel>
+    <div class="register-header-left">
+      <img src="assets/images/Group 5.png" />
+    </div>
+    <h3 class="register-header-title">
+      <ngb-carousel [showNavigationIndicators]="false">
+        <ng-template ngbSlide>
+          <span>{{content?.register_header_title[0]}}</span>
+        </ng-template>
+        <ng-template ngbSlide>
+          <span>{{content?.register_header_title[1]}}</span>
+        </ng-template>
+        <ng-template ngbSlide>
+          <span> {{content?.register_header_title[3]}}</span>
+        </ng-template>
+        <ng-template ngbSlide>
+          <span>{{content?.register_header_title[2]}}</span>
+        </ng-template>
+      </ngb-carousel>
+    </h3>
+  </div>
+  <div class="register">
+    <div class="container register-jumbotron">
+      <div class="register-form">
+        <div class="row">
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="back-button">
+              <a [routerLink]="['/home']"><i class="fas fa-chevron-left"></i><span
+                  class="back-button-text">{{content?.back_button_text}}</span></a>
+            </div>
+          </div>
+          <div class="offset-lg-4 offset-md-2 col-lg-4 col-md-6 col-sm-12">
+            <div class="register-errors" *ngIf="error">
+              {{content?.register_errors}}
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-5 col-sm-12">
+            <div class="register-paragraph">
+              <div class="register-title">
+                {{content?.register_title}}
+              </div>
+              <div class="register-text">
+                <span *ngFor="let text of content?.register_text">{{text}}</span>
+              </div>
+            </div>
+            <hr class="register-horizontal-line" />
+          </div>
+          <div class="col-lg-8 col-md-7 col-sm-12">
+            <form [formGroup]="registerFormGroup" class="registerFormGroup">
+              <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                  <div class="form-group">
+                    <input formControlName="firstName" type="text" class="form-control"
+                      [ngClass]="{ 'is-invalid': submitted && formGroup.firstName.errors }"
+                      placeholder="{{content?.form_first_name}}" />
+                    <div *ngIf="submitted && formGroup.firstName.errors" class="invalid-feedback">
+                      <span *ngIf="formGroup.firstName.errors?.required">{{content?.form_first_name_error}}</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                  <div class="form-group">
+                    <input formControlName="emailAddress" type="text" class="form-control"
+                      [ngClass]="{ 'is-invalid': submitted && formGroup.emailAddress.errors }"
+                      placeholder="{{content?.form_email_address}}" />
+                    <div *ngIf="submitted && formGroup.emailAddress.errors" class="invalid-feedback">
+                      <span *ngIf="formGroup.emailAddress.errors?.required">{{content?.form_email_address_error}}</span>
+                      <span
+                        *ngIf="formGroup.emailAddress.errors?.email">{{content?.form_email_address_invalid_mail}}</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                  <div class="form-group">
+                    <input formControlName="lastName" type="text" class="form-control"
+                      [ngClass]="{ 'is-invalid': submitted && formGroup.lastName.errors }"
+                      placeholder="{{content?.form_last_name}}" />
+                    <div *ngIf="submitted && formGroup.lastName.errors" class="invalid-feedback">
+                      <span *ngIf="formGroup.lastName.errors?.required">{{content?.form_last_name_error}}</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                  <div class="form-group">
+                    <input formControlName="username" type="text" class="form-control"
+                      [ngClass]="{ 'is-invalid': submitted && formGroup.username.errors }"
+                      placeholder="{{content?.form_username}}" />
+                    <div *ngIf="submitted && formGroup.username.errors" class="invalid-feedback">
+                      <span *ngIf="formGroup.username.errors?.required">{{content?.form_username_error}}</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <input [maxDate]="today" [startDate]="startDate" class="form-control datepicker-input"
+                        placeholder="{{content?.form_date_of_birth}}"
+                        [ngClass]="{ 'is-invalid': submitted && formGroup.dateOfBirth.errors }" name="dp"
+                        formControlName="dateOfBirth" ngbDatepicker #d="ngbDatepicker" [readonly]="true"
+                        (click)="d.toggle()">
+                      <div class="input-group-append">
+                        <button class="btn btn-outline-secondary calendar calendar-icon" (click)="d.toggle()"
+                          type="button"><img src="assets/images/calendar-icon.png" class="icon-image" /></button>
+                      </div>
+                      <div *ngIf="submitted && formGroup.dateOfBirth.errors" class="invalid-feedback">
+                        <span
+                          *ngIf="formGroup.dateOfBirth.errors?.required">{{content?.form_date_of_birth_error}}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                  <div class="form-group">
+                    <input formControlName="password" type="password" class="form-control"
+                      [ngClass]="{ 'is-invalid': submitted && formGroup.password.errors }"
+                      placeholder="{{content?.form_password}}" />
+                    <div *ngIf="submitted && formGroup.password.errors" class="invalid-feedback">
+                      <span *ngIf="formGroup.password.errors?.required">{{content?.form_password_error}}</span>
+                      <span *ngIf="formGroup.password.errors?.minlength">{{content?.form_password_error_length}}</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                  <div class="form-group">
+                    <input formControlName="telephone" type="text" class="form-control"
+                      [ngClass]="{ 'is-invalid': submitted && formGroup.telephone.errors }"
+                      placeholder="{{content?.form_telephone}}" />
+                    <div *ngIf="submitted && formGroup.telephone.errors" class="invalid-feedback">
+                      <span *ngIf="formGroup.telephone.errors?.required">{{content?.form_telephone_error}}</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                  <div class="form-group">
+                    <input formControlName="confirmPassword" type="password" class="form-control"
+                      [ngClass]="{ 'is-invalid': submitted && formGroup.confirmPassword.errors }"
+                      placeholder="{{content?.form_confirm_password}}" />
+                    <div *ngIf="submitted && formGroup.confirmPassword.errors" class="invalid-feedback">
+                      <span
+                        *ngIf="formGroup.confirmPassword.errors?.required">{{content?.form_confirm_password_error}}</span>
+                      <span
+                        *ngIf="formGroup.confirmPassword.errors?.minlength">{{content?.form_confirm_password_error_length}}</span>
+                      <span *ngIf="formGroup.confirmPassword.errors?.mustMatch">{{content?.must_match}}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-4 col-md-6 col-sm-12">
+            <div class="fee">
+              <img class="fee-icon" src="assets/images/FeeIcon.svg" />
+              <span class="fee-text">{{content?.fee_text}}</span>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 col-sm-12 flex-centered">
+            <label id="checkbox" class="checkbox check" (click)="labelClick()">
+              <span *ngIf="mark" style="margin-left: 5px;">
+                <i class="fas fa-check"></i>
+              </span>
+            </label>
+            <label class="agree">{{content?.agree}} <a target="_blank" [routerLink]="['/terms-and-conditions']"
+                class="text-decoration">{{content?.terms_conditions}}</a></label>
+          </div>
+          <div class="col-lg-4 col-md-6 col-sm-12 flex-centered margin-left">
+            <label id="checkbox" class="checkbox mobile-margin" (click)="labelClick1()">
+              <span *ngIf="mark1" style="margin-left: 5px;">
+                <i class="fas fa-check"></i>
+              </span>
+            </label>
+            <label class="agree">{{content?.agree}} <a class="text-decoration" target="_blank" [routerLink]="['/privacy']">{{content?.service}}</a></label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-7 col-md-6 col-sm-12" style="height: 45px;">
+            <div class="register-error" *ngIf="termsError">
+              {{content?.term_error}}
+            </div>
+          </div>
+          <div class="col-lg-5 col-md-6 col-sm-12">
+            <div class="register-submit">
+              <button class="btn register-button" (click)="register()">{{content?.register}}</button>
+              <span class="login-link">{{content?.login_link}} <a
+                  (click)="login()">{{content?.login_link_click}}</a></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr class="horizontal-line" />
+    </div>
+  </div>
+  <div class="container">
+    <div class="instruments">
+      <div class="instruments-header">
+        {{content?.instruments_header}}
+      </div>
+      <div class="instruments-list">
+        <div class="instrument" *ngFor="let instrument of instruments; let i = index">
+          <div class="image-wrapper">
+            <img src="{{instrument.photo?.image.url}}" (click)="chooseInstrument(i)" />
+          </div>
+          <div class="instrument-name">{{instrument.name}}</div>
+        </div>
+      </div>
+    </div>
+    <div class="articles">
+      <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm-12 article" *ngFor="let article of content?.article">
+          <div class="article-header" *ngIf="article.video">
+            <img src="assets/images/news_pic.png" class="article-image">
+            <div class="play-button">
+              <img src="assets/images/play_video_btn.png" />
+            </div>
+          </div>
+          <img src="assets/images/video_pic.png" class="article-image" *ngIf="!article.video">
+          <span class="article-title">{{article.article_title}}</span>
+          <div class="article-content">
+            {{article.article_content}}
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-12 download">
+          <div class="download-logo">
+            <img src="assets/images/logo.svg" />
+          </div>
+          <div class="download-text">DOWNLOAD OUR APP</div>
+          <div class="download-links">
+            <div class="row">
+              <div class="col-lg-6 col-md-6 col-sm-12 first-link">
+                <button class="download-link-play">
+                  <img src="assets/images/Android.svg" class="download-image" />
+                </button>
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-12 second-link">
+                <button class="download-link-app">
+                  <img src="assets/images/Apple.svg" class="download-image" />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="players" *ngFor="let player of content?.players">
+      <div class="player">
+        <img src="assets/images/play.png" class="player-logo" />
+        <div class="player-info">
+          <div class="player-header">
+            {{ player.player_header}}
+          </div>
+          <div class="player-date">
+            {{ player.player_date}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

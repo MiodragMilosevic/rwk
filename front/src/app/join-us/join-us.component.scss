@@ -1,0 +1,96 @@
+@import "../../assets/styles/colors.scss";
+
+.join-content {
+    margin-top: 65px !important;
+    min-height: 1100px;
+    a {
+        color: $color-blue;
+    }
+
+    &:before{
+      content: '';
+      background-image: url("../../assets/images/header-shape-2.png");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      top: calc(-100vw * 0.07);
+      left: calc(100vw * 0.37);
+      width: calc(100vw * 0.5);
+      height: calc(100vw * 0.2);
+      position: absolute;
+      z-index: 1;
+
+      @media screen and (min-width: 1440px) {
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        top: calc(-100vw * 0.09);
+        left: calc(100vw * 0.35);
+        width: calc(100vw * 0.5);
+        height: calc(100vw * 0.2);
+        position: absolute;
+        z-index: 1;
+    }
+    }
+
+   
+    padding-top: 50px;
+    padding-bottom: 56px;
+    margin-top: 10px;
+    z-index: 1;
+
+    .title {
+        color: $color-blue;
+        font-size: 25px;
+        font-family: "Montserrat";font-weight:600;
+        letter-spacing: 0.31px;
+        line-height: 30px;
+        text-align: justify;
+        margin-left: 20px;
+        margin-bottom: 30px;
+    }
+
+    .subtitle {
+        color: $color-blue;
+        font-size: 19px;
+        font-weight: 600;
+        letter-spacing: 0.24px;
+        line-height: 23px;
+        text-align: justify;
+        margin-bottom: 30px;
+        margin-left: 20px;
+    }
+
+    .description {
+        color: $color-blue;
+        font-size: 16px;
+        letter-spacing: 0.2px;
+        line-height: 19px;
+        text-align: justify;
+        margin-bottom: 50px;
+    }
+
+    .bold {
+        font-weight: 600;
+    }
+
+    .diploma-wrapper {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 70px;
+
+        .diploma {
+            height: 380px;
+            width: 269px;
+            box-shadow: 0 5px 10px 0 rgba(0,0,0,0.1);
+        }
+
+        .first {
+            margin-right: 88px;
+
+            @media screen and (max-width:767px) {
+                margin-right: 0px;
+            }
+        }
+    }
+}

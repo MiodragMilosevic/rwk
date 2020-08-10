@@ -1,0 +1,475 @@
+@import "../../assets/styles/colors.scss";
+
+.instrument-info-content {
+    @media screen and (max-width: 989px) {
+       text-align: center;
+    } 
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    position: relative;
+    z-index: 0;
+    margin-top: 65px !important;
+    min-height: 1100px;
+    &:before{
+        content: '';
+        background-image: url("../../assets/images/header-shape-2.png");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain; 
+        top: calc(-100vw * 0.12);
+        left: calc(100vw * 0.35);
+        width: calc(100vw * 0.5);
+        height: calc(100vw * 0.2);
+        position: absolute;
+        z-index: 1;
+    }
+
+    .instrument-info-header {
+        background-color: $color-light-white;
+        padding-top: 50px;
+        padding-bottom: 50px;
+        position: relative;
+        z-index: -2;
+        .instrument-info-title {
+            .instrument-info-top {
+                color: $color-blue;	
+                font-size: 22px;
+                line-height: 27px;
+                color: $color-blue;	
+
+                .left-arrow {
+                    margin-right: 10.21px;
+                    color: $color-pink;
+                    height: 24px;
+                    cursor: pointer;
+                }
+            }
+            .instrument-info-bottom {
+                color: $color-blue;
+                font-family: "Montserrat";
+                font-weight:600;
+                font-size: 32px;
+                line-height: 39px;
+                margin-top: 15px;
+            }
+        }
+
+        .stepper {
+            margin-top: 40px;
+            height: 50px;
+            content: '';
+
+            .stepper-line-left{
+                height: 2px;
+                background-color: $color-blue;
+                color: $color-white;
+                position: relative;
+                z-index: 1;
+                margin-left: 10%;
+                width: 33%;
+
+                @media screen and (max-width: 767px) {
+                    margin: 0%;
+                } 
+
+                .circle {
+                    content: '';
+                    background-color: $color-blue;
+                    height: 28px;
+                    width: 28px;
+                    border-radius: 50%;
+                    position: absolute;
+                    top: -13px;
+                    text-align: center;
+
+                    span {
+                        color: $color-white;
+                    }
+
+                    .icon {
+                        margin-top: 6px;
+                        color: $color-white;
+                    }
+                }
+
+                .circle-number {
+                    display: flex;
+                    justify-content: center;
+                    flex-direction: column;
+                    content: '';
+                    background-color: $color-blue;
+                    height: 28px;
+                    width: 28px;
+                    border-radius: 50%;
+                    position: absolute;
+                    top: -10px;
+                    text-align: center;
+
+                    span {
+                        color: $color-white;
+                    }
+
+                    .icon {
+                        margin-top: 6px;
+                        color: $color-white;
+                    }
+                }
+
+                .left {
+                    left: 0%;
+                }
+
+                .left-middle {
+                    left: 95%;
+                }
+            }
+
+            .stepper-line-right{
+                height: 1px;
+                background-color: $color-gray;
+                color: $color-white;
+                position: relative;
+                z-index: 0;
+                margin-left: 46.3%;
+                width: 57%;
+                margin-top: -2px;
+
+                @media screen and (max-width: 767px) {
+                    margin-left: 36.3%;
+                } 
+                
+                .circle {
+                    content: '';
+                    background-color: $color-blue;
+                    height: 28px;
+                    width: 28px;
+                    border-radius: 50%;
+                    position: absolute;
+                    top: -13px;
+                    text-align: center;
+
+                    span {
+                        color: $color-white;
+                    }
+
+                    .icon {
+                        margin-top: 6px;
+                        color: $color-white;
+                    }
+                }
+
+                .circle-number {
+                    display: flex;
+                    justify-content: center;
+                    flex-direction: column;
+                    content: '';
+                    background-color: $color-blue;
+                    height: 28px;
+                    width: 28px;
+                    border-radius: 50%;
+                    position: absolute;
+                    top: -13px;
+                    text-align: center;
+
+                    span {
+                        color: $color-white;
+                    }
+
+                    .icon {
+                        margin-top: 6px;
+                        color: $color-white;
+                    }
+                }
+
+                .right-middle {
+                    left: 43%;
+                    background-color: $color-gray;
+                }
+
+                .right{
+                    left: 95%;
+                    background-color: $color-gray;
+                }
+            }
+
+            .stepper-name-left {
+                margin-top: 17px;
+                color: $color-blue;	
+                font-size: 14px;	
+                line-height: 27px;
+                position: relative;
+                margin-left: 10%;
+                width: 33%;
+
+                @media screen and (max-width: 767px) {
+                    margin-left: 0%;
+                } 
+
+                span {
+                    position: absolute;
+                }
+
+                .left {
+                    left: 0%;
+                }
+
+                .left-middle {
+                    left: 90%;
+                    font-family: "Montserrat";font-weight:600;
+                    font-weight: 1000;
+                }
+            }
+
+            .stepper-name-right {
+                margin-top: 17px;
+                color: $color-gray;	
+                font-size: 14px;	
+                line-height: 27px;
+                margin-left: 46.3%;
+                width: 57%;
+
+                @media screen and (max-width: 767px) {
+                    margin-left: 36.3%;
+                } 
+
+                span {
+                    position: absolute;
+                }
+
+                .right-middle {
+                    left: 69%;
+
+                    @media screen and (max-width: 767px) {
+                        left: 59%;
+                    } 
+                }
+
+                .right {
+                    left: 94%;
+                    overflow: hidden;
+
+                    @media screen and (max-width: 1200px) {
+                        left: 89%;
+                    } 
+
+                    @media screen and (max-width: 767px) {
+                        left: 80%;
+                    } 
+                }
+            }
+        }
+
+        .instruments-list {
+            margin-top: 38px;
+            text-transform: uppercase;
+            white-space: normal;
+            width: 100%;
+            text-align: center;
+            min-height: 172px; 
+            position: relative; 
+            content: '';
+            & > * {
+                margin-right: calc(100vw * 0.015);
+        
+                @media screen and (min-width: 1602px){
+                    margin-right: calc(100vw * 0.015);
+                }
+            }
+        
+            & > *:last-child {
+                margin-right: 0;
+            }
+        }
+
+        .instrument {
+            text-align: center;
+            display: inline-block;
+            .image-wrapper{
+                width: 120px;
+                height: 120px;
+                border-radius: 50%;
+                display: inline-block;
+                text-align:center;
+
+                img{
+                    width: 100px;
+                    height: 100px;
+                    margin-top: 10px;
+                }
+            }
+    
+            .chosen-image {
+                background-color: #2D3591;
+                box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    
+                img {
+                    -webkit-filter: brightness(0) invert(1) !important;
+                    filter: brightness(0) invert(1) !important;
+                }
+            }
+    
+            &:hover {
+                .image-wrapper{
+                    background-color: #2D3591;
+                    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+                    cursor: pointer;
+                }
+                img {
+                    -webkit-filter: brightness(0) invert(1) !important;
+                    filter: brightness(0) invert(1) !important;
+                }
+                
+            }
+        
+            .instrument-name {
+                width: 100%;
+                margin-top: 28px;
+                text-align: center;
+                font-family: "Montserrat";font-weight:600;
+                font-weight: 500;
+            }
+        }
+    
+        .activation-text {
+            color: $color-blue;	
+            font-size: 18px;	
+            line-height: 22px;
+            margin-top: 35px;
+        }
+
+        .activation-button {
+            height: 40px;	
+            width: 180px;	
+            border-radius: 5px;	
+            background-color: $color-blue;
+            color: $color-white;
+            font-size: 16px;	
+            font-weight: 600;	
+            line-height: 19px;
+            text-align: center;
+            margin-top: 10px;
+            border: white;
+        }
+
+        .continue-button {
+            height: 40px;
+            width: 180px;	
+            border-radius: 5px;	
+            background-color: $color-blue;
+            margin-top: 40px;
+            font-size: 16px;	
+            font-weight: 600;	
+            line-height: 19px;
+            text-align: center;
+            color: $color-white;
+            border: white;
+        }
+    }
+
+    .content {
+
+        min-height: 580px;
+
+        .content-title {
+            color: #252525;	
+            font-size: 30px;	
+            line-height: 37px;
+            margin-top: 25px;
+        }
+
+        .content-text {
+            color: #252525;		
+            font-size: 16px;	
+            line-height: 19px;
+            text-align: justify;
+            white-space: normal;
+
+            div {
+                display: block;
+                margin-top: 15px;
+            }
+        }
+
+        .instrument-content {
+            margin-top: 50px;
+            padding-left: 50px;
+            white-space: normal;
+        
+            @media screen and (max-width: 767px){
+                padding-left: 15px;
+            }
+
+            .title {
+                color: $color-black;
+                font-size: 30px;
+                line-height: 37px;
+                text-align: justify;
+                margin-bottom: 16px;
+                text-transform: capitalize;
+            }
+        
+            .content {
+                color: $color-black;
+                font-size: 16px;
+                line-height: 19px;
+                text-align: justify;
+                margin-right: 91px;
+
+                @media screen and (max-width: 767px){
+                    margin-right: 0px;
+                }
+            }
+
+        }
+
+        .marking-criteria {
+            margin-top: 103px;
+        
+            .title {
+                text-transform: uppercase;
+                color: $color-blue;
+                font-size: 18px;
+                margin-bottom: 20px;
+                line-height: 22px;
+                text-align: justify;
+            }
+        
+            .content {
+                color: $color-black;
+                font-size: 16px;
+                line-height: 19px;
+        
+                .intro {
+                    margin-bottom: 25px;
+                    text-align: left;
+
+                    @media screen and (max-width: 767px){
+                        white-space: pre-wrap;
+                    }
+                    
+                }
+        
+                .guidelines {
+                    text-align: left;
+                    ol {
+                        list-style: none;
+                        counter-reset: my-counter;
+                        padding-inline-start: 0px;
+        
+                        li {
+                            counter-increment: my-counter;
+                            margin-bottom: 25px; 
+        
+                            &::before {
+                                content: counter(my-counter) ") ";
+                                color: $color-pink;
+                                font-weight: normal;
+                            }
+                        }               
+                    }
+                }
+            }
+        }        
+    }
+}

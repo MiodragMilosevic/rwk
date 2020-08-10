@@ -1,0 +1,64 @@
+<app-header (update)="ngOnInit()"></app-header>
+<div class="exam-content">
+  <div class="container">
+    <div class="title">
+      {{ content?.title }}
+    </div>
+    <div class="row">
+      <div class="offset-lg-1 col-lg-10 col-md-12 col-sm-12 description">
+        <div class="row">
+          <div class="col-lg-6 col-md-6 col-sm-12">
+            <p *ngFor="let description of content?.description">
+              <span class="pink" *ngIf="description.pink">{{ description.pink }}</span>
+              <span *ngIf="description.first">{{ description.first }}</span>
+              <span class="bold" *ngIf="description.bold">{{ description.bold }}</span>
+              <span *ngIf="description.second">{{ description.second }}</span>
+            </p>
+          </div>
+          <div class="offset-lg-1 col-lg-5 col-md-6 col-sm-12 login-form">
+            <div class="login-title">{{ content?.login_title }}</div>
+            <div class="login-button">
+              <button class="login-username" (click)="loginUsernamePage()">
+                {{ content?.login_username }}
+              </button>
+              <button class="login-facebook" (click)="loginViaFacebook()" *ngIf="china == false">
+                {{ content?.login_facebook }}
+              </button>
+              <div *ngIf="china == true">
+                <div class="register">{{ content?.register_link }}</div>
+                <button class="login-register" (click)="registerPage()">
+                  {{ content?.create_new_account }}
+                </button>
+              </div>
+            </div>
+            <div class="register-link" *ngIf="china == false">
+              {{ content?.register_link }} <b><a
+                  [routerLink]="['/register']">{{ content?.register_link_active }}</a></b>
+            </div>
+            <div class="register-info">
+              {{ content?.register_info }}
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <hr class="horizontal-line">
+        </div>
+      </div>
+    </div>
+    <div class="instruments">
+      <div class="instruments-header">
+        {{ content?.instruments_header }}
+      </div>
+      <div class="instruments-list">
+        <div class="instrument" *ngFor="let instrument of instruments; let i = index">
+          <div class="image-wrapper">
+            <img src="{{instrument.photo?.image.url}}" (click)="chooseInstrument(i)" />
+          </div>
+          <div class="instrument-name">{{instrument.name}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

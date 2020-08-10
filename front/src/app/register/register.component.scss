@@ -1,0 +1,637 @@
+@import "../../assets/styles/colors.scss";
+
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1200px
+) !default;
+$grid-gutter-width: 20px;
+
+@import "../../../node_modules/bootstrap/scss/bootstrap-grid.scss";
+
+.content {
+
+    min-height: calc(100vh - 75px);
+    margin-top: 65px !important;
+    .register-header {
+        width: 100vw;
+        height: calc(100vw * 0.31);
+        overflow: hidden;
+        z-index: 1;
+        position: relative;
+        margin-top: 65px;
+        img {
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            width: 100%;
+            height: calc(100vw * 0.31);
+            
+        }
+       
+       .register-header-left {
+           top: 0px;
+           left: 0px;
+           width: 55vw;
+           position: absolute;
+           overflow: hidden;
+           height: calc(100vw * 0.15);
+           img {
+               width: 100%;
+               height: calc(100vw * 0.15);
+               z-index: 1;
+               position: relative;
+               background-size: cover;
+           }
+       }
+
+       .register-header-title {
+            line-height: 1.5;
+            overflow: hidden;
+            z-index: 2;
+            color: #FFFFFF;
+            font-size: calc(100vw * 0.0136);
+            top: calc(100vw * 0.012);
+            left: 7vw;
+            position: absolute;
+            width: calc(100vw * 0.26);
+            height: calc(100vw * 0.19);
+            
+            span {
+                text-shadow: 2px 4px 10px rgba(0, 0, 0, 0.2);
+            }
+    }
+
+    }
+    .register {
+        position: relative;
+        width: 100vw;
+        &:before{
+            content: '';
+            background-image: url("../../assets/images/header-shape-2.png");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
+            top: calc(-100vw * 0.17);
+            left: calc(100vw * 0.26);
+            width: calc(100vw * 0.7);
+            height: calc(100vw * 0.3);
+            position: absolute;
+            z-index: 2;
+        }
+
+        .register-jumbotron {
+            padding-top: calc(100vw * 0.05);
+            z-index: 1000;
+            position: relative;
+            .register-form {
+                background-color: #FFFFFF;	
+                box-shadow: 0 8px 18px 0 rgba(0,0,0,0.2);
+
+                .register-errors {
+                    margin-left: 36px;
+                    margin-right: 0px;
+                    margin-top: 18px;
+                    color: #E9138C;
+                    font-size: 14px;
+                    font-style: italic;
+                    font-weight: 500;
+                    line-height: 20px;
+                    text-align: center;
+                    border-right: 8px solid #E9138C;
+                }
+
+                .register-error {
+                    margin-left: 40px;
+                    margin-right: -77px;
+                    margin-top: 25px;      
+                    color: #E9138C;
+                    font-size: 14px;
+                    font-style: italic;
+                    font-weight: 500;
+                    line-height: 20px;
+                    text-align: right;
+                    content: '';
+                    height: 30px;
+
+                    @media screen and (max-width: 1200px){
+                        margin-left: 10px;
+                        margin-right: 10px;
+                        margin-top: 15px;
+                    }
+
+                    @media screen and (max-width: 767px){
+                        margin-left: 20px;
+                        margin-right: 20px;
+                        margin-top: 15px;
+                        text-align: center;
+                    }
+                }
+                .registerFormGroup {
+                    margin-left: 20px;
+                    margin-right: 20px;
+                    margin-top: 20px;
+                    .datepicker-input {
+                        background: white;
+                        color: $color-blue;
+                        box-shadow: none;
+                        box-sizing: border-box;
+                        outline: none;    
+                        -webkit-appearance: none;
+                        -moz-appearance: none;
+                        padding: 0px;
+                        padding-left: 10px;
+                        -webkit-box-shadow: none;
+                    }
+                    
+                    .calendar-icon {
+                        filter: grayscale(100%) brightness(110%);
+                    
+                        .icon-image {
+                            width: 1.2rem;
+                        }
+                    }
+                }
+
+                .back-button {
+                    color: $color-black;
+                    font-size: 14px;	
+                    font-weight: 500;	
+                    line-height: 18px;
+                    margin-left: 20px;
+                    margin-top: 30px;
+
+                    
+                    .back-button-text{
+                        font-family: "Montserrat";font-weight:600;
+                        font-weight: 500;
+                        margin-left: 15px;
+                        
+                    }
+
+                    a {
+                        color: $color-black;
+                        font-family: "Montserrat";font-weight:600;
+                        font-weight: 500;
+                        &:hover {
+                            text-decoration: none;
+                        }
+                    }
+                }
+
+                .register-paragraph {
+                    margin-top: 10px;
+                    margin-left: 30px;
+                    margin-right: 101px;
+                    color: $color-blue;
+                    height: 234px;
+                    overflow: hidden;
+
+                    @media screen and (max-width:767px){
+                        margin-left: 20px;
+                        margin-right: 20px;
+                    }
+
+                    .register-title {
+                        font-size: 16px;	
+                        line-height: 26px;
+                        margin-top: 20px;
+                        font-family: "Montserrat";
+                        font-weight:600;
+                    }
+    
+                    .register-text {
+                        font-size: 14px;
+                        line-height: 18px;
+                        margin-bottom: 40px;
+                        span {
+                            margin-top: 10px;
+                            display: block;
+                        }
+                    }
+    
+                }
+    
+                .register-horizontal-line {
+                    width: 90%;
+
+                    @media screen and (max-width:767px){
+                        width: 87%;
+                    }
+
+                }
+            }
+
+            .fee {
+                padding: 15px;
+                padding-left: 30px;
+
+                @media screen and (max-width: 767px) {
+                    padding: 0px;
+                    margin-bottom: 30px;
+                    text-align: center;
+                }
+                .fee-text {
+                    font-size: 17px;	
+                    font-weight: 500;	
+                    line-height: 25px;
+                    color: $color-blue;
+                    margin-left: 10px;
+                    font-family: "Montserrat";font-weight:600;
+                }
+            }
+
+            .horizontal-line {
+                width: 100%;
+                height: 2px;
+                margin-top: 40px;
+                background-color: $color-pink;
+            }
+
+            .register-submit {
+                margin-left: 96px;
+                margin-bottom: 30px;
+                margin-top: 15px;
+                
+                @media screen and (max-width: 767px) {
+                    margin-left: 0px;
+                    margin-bottom: 30px;
+                    text-align: center;
+                }
+                
+            
+                @media screen and (min-width: 800px) {
+                    margin-left: 0px;
+                }
+
+                @media screen and (min-width: 1200px) {
+                    margin-left: 96px;
+                }
+
+                .register-button{
+                    border-radius: 5px;
+                    background-color: $color-blue;
+                    color: $color-white;
+                    font-size: 16px;
+                    font-weight: 600;	
+                    line-height: 19px;	
+                    text-align: center;
+                    height: 40px;	
+                    margin-bottom: 10px;
+                    width: 180px;
+                }
+
+                .login-link {
+                    margin-left: 38px;
+                    font-size: 14px;
+                    font-weight: 500;	
+                    line-height: 18px;
+                    color: $color-black;
+
+                    @media screen and (max-width: 767px) {
+                        display: block;
+                        margin-top: 17px;
+                        margin-left: 0;
+                    }
+
+                    a {
+                        color: $color-blue;
+                        cursor: pointer;
+                        font-family: "Montserrat";font-weight:600;
+                        font-weight: 500;
+                        &:hover {
+                            text-decoration: underline;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+        .instruments {
+            width: 100%;
+            margin-top: 40px;
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 19px;
+            text-transform: uppercase;
+    
+            .instruments-header {
+                width: 100%;
+                text-align: center;
+                font-family: "Montserrat";font-weight:600;
+                font-weight: 500;
+            }
+    
+            .instruments-list {
+                margin-top: 69px;
+                width: 100%;
+                text-align: center;
+    
+                & > * {
+                    margin-right: calc(100vw * 0.016);
+                }
+        
+                & > *:last-child {
+                    margin-right: 0;
+                }
+            }
+    
+           
+    
+            .instrument {
+                align-content: center;
+                display: inline-block;
+                .image-wrapper{
+                    width: 120px;
+                    height: 120px;
+                    border-radius: 50%;
+                    display: inline-block;
+                    text-align:center;
+
+                    img{
+                        width: 100px;
+                        height: 100px;
+                        margin-top: 10px;
+                    }
+                }
+                &:hover {
+                    .image-wrapper{
+                        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+                        background-color: #2D3591;
+                        cursor: pointer;
+                    }
+                    img {
+                        -webkit-filter: brightness(0) invert(1) !important;
+                        filter: brightness(0) invert(1) !important;
+                    }
+                    
+                }
+            
+                .instrument-name {
+                    width: 100%;
+                    margin-top: 28px;
+                    text-align: center;
+                    font-family: "Montserrat";
+                    font-weight:600;
+                }
+            }
+        }
+    
+        .articles {
+            margin-top: 64px; 
+            .article {
+    
+                margin-bottom: 10px;
+                .article-header {
+                    width: 100%;
+                    position: relative;
+                }
+    
+                .article-image {
+                    width: 100%;
+                    margin-bottom: 15px;
+                }
+    
+                .article-title {
+                    color: $color-black;
+                    font-size: 22px;
+                    font-weight: 500;
+                    letter-spacing: -0.53px;
+                    line-height: 27px;
+                    font-family: "Montserrat";font-weight:600;
+                    font-weight: 500;
+                }
+    
+                .article-content {
+                    margin-top: 22px;
+                    color: $color-gray;
+                    font-size: 14px;
+                    line-height: 20px;
+                    text-align: justify;
+                }
+    
+                .play-button {
+                    position: absolute;
+                    z-index: 4;
+                    width: calc(100vw * 0.05);
+                    height: calc(100vw * 0.05);
+                    top: 50%;
+                    left: 50%;
+                    margin: calc(-100vw * 0.025) calc(-100vw * 0.025) calc(-100vw * 0.025) calc(-100vw * 0.025);
+    
+                    @media screen and (max-width: 767px) {
+                        width: calc(100vw * 0.16);
+                        height: calc(100vw * 0.16);
+                        margin: calc(-100vw * 0.08) calc(-100vw * 0.08) calc(-100vw * 0.08) calc(-100vw * 0.08);
+                    } 
+                    
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        position: absolute;
+                       
+    
+                    }
+                    
+                }
+            }
+        }
+    
+        .players {
+            margin-top: 54px;
+            width: 60%;
+        
+            @media screen and (max-width: 767px) {
+              width: 100%;
+              text-align: center;
+              display: block;
+            }
+            
+        
+            .player {
+              width: 100%;
+              margin-bottom: 10px;
+        
+              .player-logo {
+                width: 120px;
+                margin-right: 30px;
+                display: inline-block;
+        
+                @media screen and (max-width: 767px) {
+                  display: initial;
+                  text-align: center;
+                  margin-right: 0px;
+                }
+              }
+        
+              .player-info {
+                display: inline-block;
+        
+                @media screen and (max-width: 767px) {
+                  display: initial;
+                  text-align: center;
+                }
+        
+                .player-header {
+                  color: $color-black;
+                  font-size: 16px;
+                  font-weight: 500;
+                  line-height: 19px;
+                  margin-bottom: 15px;
+                  font-family: "Montserrat";font-weight:600;
+                }
+        
+                .player-date {
+                  color: #9B9B9B;
+                  font-size: 14px;
+                  line-height: 18px;
+                }
+              }
+        
+            }
+          }
+    
+        .download {
+            width: 100%;
+    
+            .download-logo {
+                margin-left: 38px;
+
+                img {
+                    height: 93px;	
+                    width: 186px;
+                  }
+            }
+    
+            .download-text {
+                margin-left: 114px;
+                margin-top: 17px;
+                color: #4B4B4B;
+                font-size: 16px;
+                font-family: "Montserrat";
+                font-weight: 600;
+                text-align: right;
+            }
+    
+            .download-links {
+                width: 100%;
+                margin-top: 19px;
+                text-align: center;
+    
+                .first-link {
+                    padding-right: 4px !important;
+                    @media screen and (max-width: 767px)  {
+                      padding-right: 0px !important;
+                      padding-left: 0px !important;
+                    }
+                  }
+            
+                  .second-link {
+                    padding-left: 4px !important;
+                    @media screen and (max-width: 767px)  {
+                      padding-left: 0px !important;
+                      padding-right: 0px !important;
+                    }
+                  }
+    
+                .download-link-play {
+                    width: 100%;
+                    height: auto;
+                    border-radius: 5.45px;
+                    background-color: $color-black; 
+                    @media screen and (max-width: 767px)  {
+                        width: 80%;
+                      }
+                }
+    
+                .download-link-app {
+                    width: 100%;
+                    border-radius: 5.45px;
+                    background-color: $color-black;
+                    @media screen and (max-width: 767px)  {
+                        width: 80%;
+                      }
+                }
+    
+                .download-image {
+                    width: 100%;
+                    @media screen and (max-width: 767px)  {
+                        width: 50%;
+                      }
+                }
+            }
+    
+        }
+
+}
+
+.mobile-row {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+
+.checkbox {
+    border: 2px solid #D94699;
+    content: '';
+    height: 30px;
+    width: 30px;
+    line-height: 30px;
+    cursor: pointer;
+    color: #D94699;
+    border-radius: 5px;
+    margin-top: 15px;
+    display: inline-block;
+}
+
+.check {
+    margin-left: 20px;
+}
+
+.mobile-margin {
+    @media screen and (max-width: 967px){
+        margin-left: 20px;
+    }
+}
+
+.agree {
+    color: $color-blue;	
+    font-family: "Montserrat";	
+    font-size: 14px;	
+    line-height: 18px;
+    margin-left: 20px;
+    display: inline-block;
+    margin-top: 20px;
+
+    .text-decoration {
+        text-decoration: underline;
+        cursor: pointer;
+    }
+
+    a {
+        text-decoration: underline;
+        cursor: pointer;  
+        color: $color-blue;	
+        font-family: "Montserrat";	
+        font-size: 14px;	
+        line-height: 18px;
+    }
+}
+
+.flex-centered {
+    display: flex;
+    
+}
+
+.margin-left {
+    @media screen and (max-width: 991px) and (min-width: 967px){
+        margin-left: 380px;
+    }
+
+    @media screen and (max-width: 967px) and (min-width: 767px){
+        margin-left: 360px;
+    }
+   
+}

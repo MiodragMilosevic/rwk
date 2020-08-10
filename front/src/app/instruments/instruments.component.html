@@ -1,0 +1,200 @@
+<app-header (update)="ngOnInit()"></app-header>
+
+<div class="instruments-background">
+  <div class="container" style="margin-top: 65px;">
+    <div class="title">
+      {{ pageContent?.select_course }}
+    </div>
+    <div class="instruments-list">
+      <div class="instrument" *ngFor="let instrument of instruments; let i = index">
+        <div class="image-wrapper" [ngClass]="{ 'chosen-image': i == instrumentIndex }">
+          <img *ngIf="instrument?.photo" src="{{instrument?.photo?.image.url}}" (click)="chooseInstrument(i)" />
+        </div>
+        <div class="instrument-name">{{instrument?.name}}</div>
+      </div>
+    </div>
+    <div class="level-title">
+      Levels
+    </div>
+    <div class="levels-list">
+      <div class="level" *ngFor="let level of levels; let i = index;">
+        <a (click)="selectLevel(i)">
+          <div class="level-wrapper"
+            [ngClass]="{'purple-circle': i !== selectedLevelIndex, 'pink-circle': i == selectedLevelIndex }"
+            (click)="selectLevel(i)">{{ level.name }}</div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container" *ngIf="!selectedLevel && !hoveredLevel">
+  <div class="row">
+    <div class="col-lg-7 col-md-10 col-sm-10 instrument-content">
+      <div class="title">
+        <span *ngIf="instruments">{{instruments[instrumentIndex]?.name}}</span>
+      </div>
+      <div class="content" *ngIf="instruments && instruments[instrumentIndex] && instruments[instrumentIndex].content">
+        <p *ngFor="let description of instruments[instrumentIndex]?.content?.description">
+          {{description?.text}}
+        </p>
+      </div>
+    </div>
+    <div class="col-lg-5 col-md-10 col-sm-10 marking-criteria">
+      <div class="title">
+        <span>{{ pageContent?.marking_criteria_title }}</span>
+      </div>
+      <div class="content">
+        <div class="intro">
+          <span>{{ pageContent?.marking_criteria_description }}</span>
+        </div>
+        <div class="guidelines">
+          <ol *ngIf="instruments && instruments[instrumentIndex] && instruments[instrumentIndex].content">
+            <div *ngFor="let criteria of instruments[instrumentIndex]?.content?.criteria_list">
+              <li *ngIf="criteria && criteria.criteria !== ''">{{ criteria?.criteria }}
+              </li>
+            </div>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container categories" *ngIf="hoveredLevel || selectedLevel">
+  <div class="row">
+    <div class="col-lg-4 col-md-4 col-sm-12">
+      <div class="level-header">
+        <span class="instrument">{{ selectedInstrument?.name}}</span>
+        <i class="fas fa-chevron-left left-arrow"></i>
+        <span class="level" *ngIf="selectedLevel && !hoveredLevel">Level {{selectedLevel?.name}} </span>
+        <span class="level" *ngIf="hoveredLevel">Level {{hoveredLevel?.name}} </span>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-12">
+      <div class="have-licence" *ngIf="alreadyHasLevel">
+        {{ note}}
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-12">
+      <div class="enrol-wrapper">
+        <button *ngIf="!user" class="enrol-button" (click)="registerModal()"><img class="enrol-button-icon"
+            src="assets/images/Enroll icon.png" /> {{ pageContent?.enroll }}</button>
+        <button *ngIf="user" class="enrol-button" (click)="continue()">{{ pageContent?.continue }}</button>
+      </div>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-12">
+      <div class="category-carousel">
+        <div class="row">
+          <div class="col-lg-1 col-md-2 col-sm-2 arrow-padding-left" *ngIf="categories?.length && activeElement != 0 ">
+            <span (click)="clickLeft()"><i class="fas fa-chevron-left left-arrow arrow"></i></span>
+          </div>
+          <div class="col-lg-10 col-md-12 col-sm-12">
+            <nav id="nav-scroll" class="navbar navbar-expand-lg navbar-light bg-light scroll"
+              style="margin-left: -20px;">
+              <div id="navbarNav">
+                <ul id="navbar-nav" class="navbar-nav">
+                  <li class="nav-item" *ngFor="let category of categories; let i = index;">
+                    <a class="nav-link" (click)="changeCategory(i)"
+                      [ngClass]="{'active': i == selectedCategory}">{{ category.name }}</a>
+                  </li>
+                </ul>
+              </div>
+            </nav>
+          </div>
+          <div class="col-lg-1 col-md-2 col-sm-2 arrow-padding-right"
+            *ngIf="categories?.length && activeElement != this.categories?.length - 1 ">
+            <span (click)="clickRight()"><i class="fas fa-chevron-right right-arrow arrow"></i></span>
+          </div>
+        </div>
+      </div>
+      <div class="studies" *ngIf="categories && categories[selectedCategory]">
+        <div class="study" *ngFor="let study of categories[selectedCategory]?.leaves; let i = index;">
+          <div class="row" *ngIf="i &lt; 2">
+            <div class="col-lg-5 col-md-4 col-sm-12">
+              <img src="assets/images/Note.svg" *ngIf="study.pdf_preview.url" class="study-image" />
+              <div class="rectangle" *ngIf="!study.pdf_preview.url">
+                <div class="inline">
+                  <img src="assets/images/Upload_pic.png" class="study-image-preview" />
+                  <span class="study-text">{{ pageContent?.no_preview }}</span>
+                  <span class="study-text-new-line">{{ pageContent?.available }}</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-7 col-md-8 col-sm-12">
+              <div class="title">
+                <div class="head-title">
+                  <span>{{ study.name }}</span>
+                </div>
+                <div class="artist" *ngIf="study.content && study.content.artist">
+                  <span>({{ study.content.artist }})</span>
+                </div>
+              </div>
+              <div class="preview-wrapper" *ngIf="study.pdf_preview.url">
+                <div class="preview-button">
+                  <a (click)="setPdfSrc(study.pdf_preview.url, content)">{{ pageContent?.preview_button }}</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row" *ngIf="i &gt; 1" height="65px">
+            <div class="col-lg-5 col-md-4 col-sm-12">
+              <div class="rectangle">
+                <div class="inline">
+                  <img src="assets/images/Upload_pic.png" class="study-image-preview" />
+                  <span class="study-text">No preview</span>
+                  <span class="study-text-new-line">available</span>
+                </div>
+              </div>
+
+            </div>
+            <div class="col-lg-7 col-md-8 col-sm-12">
+              <div class="title">
+                <div class="head-title">
+                  <span>{{ study.name }}</span>
+                </div>
+                <div class="artist" *ngIf="studiesContent[i] && studiesContent[i].artist">
+                  <span>({{ study.content.artist }})</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="offset-lg-1 offset-md-1 col-lg-5 col-md-5 col-sm-12">
+      <div class="overview">
+        <div class="title">
+          <span>{{ pageContent?.curriculium_overview }}</span>
+        </div>
+        <div class="content">
+          <ul class="fa-ul">
+            <div *ngFor="let overview of selectedLevel?.content?.overview_list">
+              <li *ngIf="overview && overview.overview !== ''"><span class="fa-li pink-check"><i
+                    class="ion-checkmark"></i></span>{{ overview.overview }}</li>
+            </div>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="loader" *ngIf="loadingPdf">
+    <img src="assets/images/loader.gif" alt="">
+    </div>
+    <pdf-viewer (after-load-complete)="loadingPdf = false" [src]="pdfSrc" [show-all]="true" [original-size]="false" [fit-to-page]="true" [autoresize]="false"
+      style="display: block"></pdf-viewer>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+  </div>
+</ng-template>
+
+<app-footer></app-footer>

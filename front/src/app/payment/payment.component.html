@@ -1,0 +1,298 @@
+<app-header *ngIf="levels && levels.length != 0" (update)="ngOnInit()" [levelData]="this.levels[this.instrumentIndex][levelIndex - 1]"
+    [instrumentData]="this.currentInstrument1"></app-header>
+<app-header *ngIf="!levels || (levels && levels.length == 0)" (update)="ngOnInit()"></app-header>
+<div class="payment-content">
+    <div class="payment-header">
+        <div class="container" style="min-height: 110px;">
+            <div class="row loader-wrapper" *ngIf="isInitLoading()">
+                <div class="col-lg-5">
+                    <div class="loader">
+                        <img src="assets/images/loader.gif" alt="">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" *ngIf="stepper === 'false' && instrument && level">
+                <div class="col-lg-2 col-md-3 col-sm-12">
+                    <div class="payment-title">
+                        <div class="payment-top">
+                            <a (click)="returnBack()">
+                                <div class="selected-course">
+                                    <span>{{content?.final_step}}</span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="payment-bottom">
+                            {{content?.payment_bottom}}
+                        </div>
+                    </div>
+                </div>
+                <div class="offset-lg-4 offset-md-3 col-lg-6 col-md-6 col-sm-12">
+                    <div class="stepper">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" *ngIf="!instrument && !level">
+                <div class="col-lg-2 col-md-3 col-sm-12">
+                    <div class="payment-title" *ngIf="load">
+                        <div class="payment-top">
+                            <a (click)="back()">
+                                <i class="fas fa-chevron-left left-arrow"></i>
+                                {{ content?.back_button }}
+                                <span class="name">{{ content?.videos}}</span>
+                            </a>
+                        </div>
+                        <div class="payment-bottom">
+                            {{content?.payment_bottom}}
+                        </div>
+                    </div>
+                </div>
+                <div class="offset-lg-4 offset-md-3 col-lg-6 col-md-6 col-sm-12">
+                    <div class="stepper">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" *ngIf="stepper === 'true' && instrument && level">
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="payment-title" *ngIf="!load">
+                        <div class="payment-top">
+                            <a (click)="returnBack()">
+                                <i class="fas fa-chevron-left left-arrow"></i>
+                                {{ content?.back_button }}
+                                <span class="name">{{ content?.payment_top}}</span>
+                            </a>
+                        </div>
+                        <div class="payment-bottom">
+                            {{content?.payment_bottom}}
+                        </div>
+                    </div>
+                </div>
+                <div class="offset-lg-2 col-lg-6 col-md-6 col-sm-12">
+                    <div class="stepper">
+                        <div class="stepper-line-left">
+                            <div class="circle left">
+                                <img src="assets/images/stepper/Checked.png" />
+                            </div>
+                            <div class="circle left-middle">
+                                <img src="assets/images/stepper/Checked.png" />
+                            </div>
+                            <div class="circle right-middle">
+                                <img src="assets/images/stepper/Checked.png" />
+                            </div>
+                        </div>
+                        <div class="stepper-line-right">
+                            <div class="circle right">
+                                <img src="assets/images/stepper/Current.png" />
+                            </div>
+                        </div>
+                        <div class="stepper-name-left">
+                            <span class="left">
+                                {{ content?.stepper_left}}
+                            </span>
+                            <span class="left-middle">
+                                {{ content?.stepper_left_middle}}
+                            </span>
+                            <span class="right-middle">
+                                {{ content?.stepper_right_middle}}
+                            </span>
+                        </div>
+                        <div class="stepper-name-right">
+                            <span class="right">
+                                {{ content?.stepper_right}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 col-md-6 col-sm-12" *ngIf="instrument && level">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-4 col-sm-12">
+                            <div class="instrument" *ngIf="instrument">
+                                <div class="image-wrapper chosen-image">
+                                    <img src="{{instrument?.photo.image.url}}" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-5 col-md-4 col-sm-12">
+                            <div class="header-text" *ngIf="instrument">
+                                <div class="header-title">
+                                    {{content?.course}}
+                                </div>
+                                <div class="header-name" style="white-space: pre-line;">
+                                    {{instrument?.name}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-12">
+                            <div class="header-text" *ngIf="instrument">
+                                <div class="header-title">
+                                    {{content?.date_of_activation}}
+                                </div>
+                                <div class="header-name">
+                                    {{ dateOfActivate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-3 col-md-4 col-sm-12">
+                            <div class="level" *ngIf="level">
+                                <div class="level-wrapper">
+                                    <span>{{ level.name }}</span>
+                                </div>
+                                <div class="level-title">
+                                    <span>{{level.level}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-5 col-md-4 col-sm-12">
+                            <div class="header-text" *ngIf="level">
+                                <div class="header-title">
+                                    {{content?.level_name}}
+                                </div>
+                                <div class="header-name" style="white-space: pre-line;">
+                                    {{content?.level_name_down}} {{level?.name}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-12">
+                            <div class="header-text" *ngIf="level">
+                                <div class="header-title">
+                                    {{content?.date_of_deactivate}}
+                                </div>
+                                <div class="header-name">
+                                    {{ dateOfDeactivate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <hr class="payment-line" *ngIf="instrument && level" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div class="payment-total" *ngIf="instrument && level">
+                                <span class="left">{{content?.total}}</span>
+                                <span class="right">{{ level?.price }}$</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-5 col-md-6 col-sm-12" *ngIf="!(instrument && level)">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <hr class="top-line" *ngIf="load && scroll" />
+                            <div class="top-line-hidden" *ngIf="load && !scroll"></div>
+                            <ol id="list-of-vides" class="list-of-videos" (scroll)="onWindowScroll($event)">
+                                <li *ngFor="let video of selectedVideos" class="video">
+                                    <div class="name">
+                                        {{video.name}}
+                                    </div>
+                                    <div class="price">
+                                        ${{video.price}}
+                                    </div>
+                                    <div class="author" *ngIf="video.author">
+                                        ({{video.author}})
+                                    </div>
+                                    <hr class="payment-line" *ngIf="load" />
+                                </li>
+                                <li class="add-more" *ngIf="load">
+                                    <button (click)="addMore()" *ngIf="!paymentSubmitted"><span class="icon">+</span>
+                                        {{addMoreText}}
+                                    </button>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <hr class="payment-line-video" *ngIf="load" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div class="payment-total" *ngIf="load">
+                                <span class="left">{{content?.total}}</span>
+                                <span class="right">${{priceOfVideos}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-md-12 col-sm-12" style="height: 300px;">
+                    <div id="payment-form" class="payment-form">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                <div class="payment-title">
+                                    {{content?.payment_info}} <br />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="payment-method">
+                            <div class="row input-form">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="row payment-cards">
+                                        <div class="col-lg-12 col-md-12 col-sm-12">
+                                            <img class="payment-card" src="assets/images/payment/CC.png" />
+                                        </div>
+                                    </div>
+                                    <div class="cell example example3" id="example-3">
+                                        <form novalidate [formGroup]="stripe">
+                                            <div class="fieldset">
+                                                <div id="card-number" class="field empty"></div>
+                                                <input id="example3-name" data-tid="elements_examples.form.name_label"
+                                                    class="field margin-top stripe-field" type="text"
+                                                    placeholder="{{content?.form_card_holder_name}}" autocomplete="name"
+                                                    formControlName="holderName" style="font-weight: 400 !important;">
+                                                <div id="card-expiry" class="field empty half-width"></div>
+                                                <div id="card-cvc" class="field empty half-width"></div>
+                                                <img src="assets/images/payment/CVC credit card.png"
+                                                    class="cvc-payment-card" />
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-12 col-md-12 col-sm-12" style="height: 20px;">
+                                                    <div class="payment-info" *ngIf="errorDisplay">
+                                                        <span>{{ error }}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div
+                                                    class="offset-lg-3 col-lg-9 offset-md-4 col-md-7 col-sm-12 text-right">
+                                                    <button class="enabled-button" type="submit"
+                                                        data-tid="elements_examples.form.pay_button"
+                                                        *ngIf="!paymentSubmitted" (click)="pay()">{{
+                                                        content?.button_text}}
+                                                    </button>
+                                                    <button class="disabled-button" *ngIf="paymentSubmitted"
+                                                        disabled>{{ content?.button_text}}
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="payment container">
+    <div class="row">
+        <div class="col-lg-6 col-md-12 col-sm-12">
+
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

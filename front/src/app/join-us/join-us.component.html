@@ -1,0 +1,66 @@
+<app-header *ngIf="levels && levels.length != 0" (update)="ngOnInit()" [levelData]="this.levels[this.instrumentIndex][levelIndex - 1]" [instrumentData]="this.currentInstrument" ></app-header>
+<app-header *ngIf="!levels || (levels && levels.length == 0)" (update)="ngOnInit()"  ></app-header>
+<div class="join-content">
+  <div class="container">
+    <div class="title">
+      {{ content?.title }}
+    </div>
+    <div class="subtitle">
+      {{ content?.subtitles[0] }}
+    </div>
+    <div class="row">
+        <div class="offset-lg-1 col-lg-10 col-md-12 col-sm-12 description">
+            <p>
+                <span *ngIf="content && content.description[0].first">{{ content?.description[0].first }}</span>
+                <a href="mailto:office@wagner-ime.org" target="_blank">{{ content?.description[0].mail }}</a>
+                <span *ngIf="content && content.description[0].second">{{ content?.description[0].second }}</span>
+            </p>
+            <p>
+                <span *ngIf="content && content.description[1].first">{{ content?.description[1].first }}</span><br *ngIf="content && content.description[1].first">
+                <span *ngIf="content && content.description[1].second">{{ content?.description[1].second }}</span>
+                <span class="bold" *ngIf="content && content.description[1].bold_first">{{ content.description[1].bold_first }}</span>
+                <span *ngIf="content && content.description[1].third">{{ content.description[1].third }}</span>
+                <span class="bold" *ngIf="content && content.description[1].bold_second">{{ content.description[1].bold_second }}</span>
+                {{ content?.description[1].fourth }}
+                <a href="mailto:office@wagner-ime.org" target="_blank">{{ content?.description[1].mail }}</a>
+                {{ content?.description[1].fifth }}
+            </p>
+        </div>
+      </div>
+    <div class="diploma-wrapper">
+      <img src="../../assets/images/1.svg" class="diploma first">
+      <img src="../../assets/images/2.svg" class="diploma">
+    </div>
+    <div class="subtitle">
+      {{ content?.subtitles[1] }}
+    </div>
+    <div class="row">
+      <div class="offset-lg-1 col-lg-10 col-md-12 col-sm-12 description">
+        <p>
+            {{ content?.description[2].first }}
+            <a href="mailto:office@wagner-ime.org">{{ content?.description[2].mail }}</a>
+            {{ content?.description[2].second }}
+        </p>
+      </div>
+    </div>
+    <div class="diploma-wrapper">
+        <img src="../../assets/images/3.svg" class="diploma">
+    </div>
+    <div class="subtitle">
+      {{ content?.subtitles[2] }}
+    </div>
+    <div class="row">
+        <div class="offset-lg-1 col-lg-10 col-md-12 col-sm-12 description">
+          <p>
+              {{ content?.description[3].first }}
+              <a href="mailto:office@wagner-ime.org">{{ content?.description[3].mail }}</a>
+              {{ content?.description[3].second }}
+          </p>
+        </div>
+      </div>
+  </div>
+</div>
+
+
+
+<app-footer></app-footer>

@@ -1,0 +1,20 @@
+<div class="content">
+  <div class="title">
+    {{content?.title}}
+  </div>
+  <div class="description">
+    {{content?.description}}
+  </div>
+  <div class="row">
+    <div class="col-lg-6 col-md-6 col-sm-12">
+      <button class="cancel" (click)="cancel()">
+       {{content?.cancel}}
+     </button>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-12">
+      <button class="delete" (click)="delete()">
+        {{content?.delete_account}}
+      </button>
+    </div>
+  </div>
+</div>

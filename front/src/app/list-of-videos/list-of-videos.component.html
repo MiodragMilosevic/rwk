@@ -1,0 +1,91 @@
+<app-header *ngIf="levels && levels.length != 0" (update)="ngOnInit()" [levelData]="this.levels[this.instrumentIndex][levelIndex - 1]" [instrumentData]="this.currentInstrument" ></app-header>
+<app-header *ngIf="!levels || (levels && levels.length == 0)" (update)="ngOnInit()"  ></app-header>
+
+<div class="list-of-videos-content-wrapper">
+    <div class="loader" *ngIf="!load">
+        <img src="assets/images/loader.gif" alt="">
+    </div>
+    <div class="list-of-videos-content" *ngIf="load">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 mobile-center">
+                    <div class="title">
+                        {{content?.title}}
+                    </div>
+                    <button class="button-checkout-disabled" disabled *ngIf="logged && index.length == 0">
+                        {{ content?.checkout }}
+                    </button>
+                    <button class="button-checkout-enabled" *ngIf="logged && index.length != 0" (click)="payVideos()">
+                        <i class="fas fa-circle decoration" *ngIf="!view"></i>
+                        <i class="fas fa-circle decoration-china" *ngIf="view"></i>
+                        <div class="number">{{index.length}}</div>
+                        {{content?.checkout}}
+                    </button>
+                </div>
+            </div>
+            <div class="card-list">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6" *ngFor="let video of videos let i = index;">
+                        <div class="card">
+                            <div class="picture-box">
+                                <img class="picture" src="{{video.image}}"/>
+                                <div class="hover-image" *ngIf="!logged">
+                                    <div class="hover-title">
+                                        {{ content?.preview_register }}
+                                    </div>
+                                    <button class="hover-button" (click)="registerModal(i)">
+                                        {{ content?.register }}
+                                    </button>
+                                </div>
+
+                                <div class="hover-image-logged" *ngIf="logged">
+                                    <div class="preview-button" (click)="preview(i)">
+                                        <img class="preview-icon" src="assets/images/play.svg"/> <span>{{ content?.preview }}</span>
+                                    </div>
+                                    <div class="add-to-chart-button" id="add-to-chart-button-{{i}}"
+                                         (click)="addToChart(i)"
+                                         *ngIf="!(this.index.indexOf(i) > -1)">
+                                        <img class="preview-icon shop" src="assets/images/shopping.svg"/> <span>{{content?.add_to_chart}}</span>
+                                    </div>
+                                    <div class="add-to-chart-button" id="add-to-chart-button-{{i}}"
+                                         (click)="addToChart(i)"
+                                         *ngIf="(this.index.indexOf(i) > -1)">
+                                        <img class="preview-icon-rose" src="assets/images/rose.svg"/> <span>{{content?.added}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="content">
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12 col-sm-12">
+                                        <div class="price" *ngIf="!(this.index.indexOf(i) > -1)">
+                                            ${{video.price}}
+                                        </div>
+                                        <div class="cart" *ngIf="this.index.indexOf(i) > -1">
+                                            {{content?.in_cart}}
+                                        </div>
+                                        <div class="duration" *ngIf="video.duration">
+                                            {{content?.duration}}: {{video.duration}}
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12">
+                                        <div class="name">
+                                            {{video.name}}
+                                        </div>
+                                        <div class="author" *ngIf="video.author">
+                                            ({{video.author}})
+                                        </div>
+                                        <div class="content" *ngIf="video.content">
+                                            {{video.content}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<app-footer></app-footer>

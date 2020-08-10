@@ -1,0 +1,293 @@
+<app-header (update)="ngOnInit()" [levelData]="this.currentLevel" [instrumentData]="this.currentInstrument" ></app-header>
+
+<div class="profile-info-background" *ngIf="profilePage">
+    <div *ngIf="pending" class="pending-note">
+        <span class="note-header">{{pageContent?.note}}</span>
+        <span>{{pageContent?.note_text}}</span>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2 col-md-4 col-sm-12">
+                <div class="chosen-course text-center">
+                    <div class="title">
+                        <span>{{pageContent?.chosen_course}}</span>
+                    </div>
+                    <div class="instrument">
+                        <div class="instrument-container"
+                            [ngClass]="{'expanded': chooseInstrument == true && instruments.length > 1, 'instrument-container-transparent': instrumentHovered == false && chooseInstrument == false}">
+                            <div class="instrument-wrapper" *ngIf="instruments && instruments[instrumentIndex]"
+                                (click)="toggleChooseInstrument()" (mouseover)="hoverInstrument()"
+                                (mouseout)="unhoverInstrument()">
+                                <img src="{{instruments[instrumentIndex]?.photo?.image.url}}" class="instrument-image" />
+                            </div>
+                            <div *ngFor="let instrument of instruments; let i = index">
+                                <div *ngIf="i !== instrumentIndex && chooseInstrument == true" class="instrument-expand"
+                                    (click)="changeInstrument(i)">
+                                    <img src="{{instruments[i]?.photo?.image.url}}" class="instrument-expand-image" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="instrument-mobile-container" [ngClass]="{'mobile-expanded': chooseInstrument == true && instruments.length > 1, 'mobile-transparent': chooseInstrument == false}">
+                            <div class="instrument-mobile-wrapper" *ngIf="instruments && instruments[instrumentIndex]" (click)="toggleChooseInstrument()">
+                                <img src="{{instruments[instrumentIndex]?.photo?.image.url}}" class="instrument-image" />
+                            </div>
+                            <div class="instruments-scroll">
+                            <div *ngFor="let instrument of instruments; let i = index">
+                                <div *ngIf="i !== instrumentIndex && chooseInstrument == true" class="instrument-mobile-expand"
+                                    (click)="changeInstrument(i)">
+                                    <img src="{{instruments[i]?.photo?.image.url}}" class="instrument-expand-image" />
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="instrument-title" *ngIf="instruments">
+                            {{ instruments[instrumentIndex]?.name }}
+                        </div>
+                    </div>
+                    <div class="level">
+                        <div class="level-container"
+                            [ngClass]="{'expanded': chooseLevel == true && levels && levels[instrumentIndex] && levels[instrumentIndex].length > 1, 'level-container-transparent': levelHovered == false && chooseLevel == false}">
+                            <div class="level-wrapper" *ngIf="levels" (click)="toggleChooseLevel()"
+                                (mouseover)="hoverLevel()" (mouseout)="unhoverLevel()">
+                                <span>{{ levels[instrumentIndex][levelIndex]?.name }}</span>
+                            </div>
+                            <div *ngFor="let level of levels[instrumentIndex]; let i = index">
+                                <div *ngIf="i !== levelIndex && chooseLevel == true" class="level-expand"
+                                    (click)="changeLevel(i)">
+                                    {{ level.name }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="level-mobile-container" [ngClass]="{'level-mobile-expanded': chooseLevel == true && levels && levels[instrumentIndex] && levels[instrumentIndex].length > 1, 'level-mobile-transparent': chooseLevel == false}">
+                            <div class="level-mobile-wrapper" *ngIf="levels" (click)="toggleChooseLevel()">
+                                <span>{{ levels[instrumentIndex][levelIndex]?.name }}</span>
+                            </div>
+                            <div class="levels-scroll">
+                                <div *ngFor="let level of levels[instrumentIndex]; let i = index">
+                                    <div *ngIf="i !== levelIndex && chooseLevel == true" class="level-mobile-expand"
+                                        (click)="changeLevel(i)">
+                                        {{ level.name }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="level-title">
+                            {{pageContent?.level}}
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="offset-lg-1 col-lg-5 col-md-10 col-sm-12">
+                <div class="curriculium-title">
+                    <span>{{pageContent?.curriculium_overview}}</span>
+                </div>
+                <div class="curriculium-overview">
+                    <ul class="fa-ul">
+                        <div *ngFor="let overview of levels[instrumentIndex][levelIndex]?.content?.overview_list">
+                            <li *ngIf="overview && overview.overview !== ''"><span class="fa-li pink-check"><i
+                                        class="ion-checkmark"></i></span>{{ overview.overview }}</li>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+            <div class="offset-lg-1 col-lg-3 col-md-4 col-sm-4">
+                <div class="profile-info">
+                    <div class="profile-photo-wrapper" *ngIf="!imagePreview">
+                        <button class="image-button" (click)="imageUpload()">
+                            <img src="assets/images/Upload_pic.png" class="avatar" />
+                        </button>
+                        <span class="upload-text">{{pageContent?.upload_picture}}</span>
+                    </div>
+                    <button class="image-button" *ngIf="imagePreview" (click)="imageUpload()">
+                        <img *ngIf="imagePreview" src="{{ imagePreview }}" class="profile-photo-wrapper" />
+                    </button>
+                    <input id="inputImageUpload" accept="image/*" type="file" name="inputImageUpload" hidden
+                        (change)="fileChangeEvent($event)" />
+                    <div class="user-name" *ngIf="user && user.first_name != null && user.last_name != null">
+                        {{ user?.first_name + ' ' + user?.last_name }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="container" *ngIf="profilePage">
+    <hr class="horizontal-pink">
+    <div class="level-content">
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <div class="categories">
+                    <div class="category" *ngFor="let category of categories; let i = index">
+                        <button class="category-button" (click)="selectCategory(i)"
+                            [ngClass]="{'selected': i == categoryIndex, 'not-selected': i != categoryIndex}" >{{ category.name }}</button>
+                    </div>
+                </div>
+                <div class="exam-info">
+                    <div class="first">
+                        <span class="info">{{pageContent?.bring_exam}}</span>
+                        <i class="fas fa-chevron-right right-arrow"></i>
+                    </div>
+                    <div class="second">
+                        <span class="info">{{pageContent?.register_exam}}</span>
+                        <i class="fas fa-chevron-right right-arrow"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-12 col-sm-12">
+                <div class="studies-wrapper">
+                    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav">
+                                <li class="nav-item" *ngFor="let section of sections; let i = index">
+                                    <a class="nav-link" (click)="changeSection(i)"
+                                        [ngClass]="{'active': i == sectionIndex}">{{ section }}</a>
+                                </li>
+
+                            </ul>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li class="nav-item view">
+                                    <a class="nav-link grid" [ngClass]="{'active': listView == false}"
+                                        (click)="setGridView()">
+                                        <div class="grid-icon">
+                                            <i class="fas fa-th-large"></i>
+                                        </div>
+                                    </a>
+                                    <a class="nav-link list" [ngClass]="{'active': listView == true}"
+                                        (click)="setListView()">
+                                        <div class="list-icon">
+                                            <i class="fas fa-th-list"></i>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                    <div class="studies-list" *ngIf="listView && categories && categories[categoryIndex]">
+                        <div class="study" *ngFor="let study of categories[categoryIndex].leaves; let i = index">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-sm-4">
+                                    <div class="study-image-wrapper" *ngIf="study.pdf_preview.url">
+                                        <img src="assets/images/Note.svg" class="study-image" />
+                                        <div class="hover-image">
+                                            <div class="preview"
+                                                *ngIf="((pending && i &lt; 2) || !pending) && study.pdf_preview.url">
+                                                <img (click)="setPdfSrc(study.pdf_preview.url, content)"
+                                                    src="assets/images/preview.png" />
+                                                {{pageContent?.preview}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="rectangle" *ngIf="!study.pdf_preview.url">
+                                        <div class="inline">
+                                            <img src="assets/images/Upload_pic.png" class="study-image-preview" />
+                                            <span class="study-text">No preview</span>
+                                            <span class="study-text-new-line">available</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-5 col-md-8 col-sm-8">
+                                    <div class="title">
+                                        <div class="head-title">
+                                            <span>{{ study.name }}</span>
+                                        </div>
+                                        <div class="artist" *ngIf="study.content && study.content.artist">
+                                            <span>({{ study.content?.artist }})</span>
+                                        </div>
+                                        <div class="description" *ngIf="study.content && study.content.desription">
+                                            <span>{{ study.content?.description }}</span>
+                                        </div>
+                                        <div class="duration" *ngIf="study.content && study.content.duration">
+                                            <span>{{pageContent?.duration}} {{ study.content?.duration }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-12 col-sm-12 study-wrapper">
+                                    <div class="date-wrapper">
+                                        <span class="new" *ngIf="newStudy(study)">{{pageContent?.new}}</span>
+                                        <span *ngIf="!newStudy(study)">{{ studyDate(study) }}</span>
+                                    </div>
+                                    <div class="preview-wrapper">
+                                        <div class="preview-button" *ngIf="!pending && study.pdf && study.pdf.url">
+                                            <a [href]="study.pdf?.url" target="_blank">{{pageContent?.download}}</a>
+                                        </div>
+                                        <div class="preview-button"
+                                            *ngIf="pending && i &lt; 2 && study.pdf_preview && study.pdf_preview.url">
+                                            <a
+                                                (click)="setPdfSrc(study.pdf_preview.url, content)">{{pageContent?.preview}}</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="studies-grid" *ngIf="!listView">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-6 col-sm-12" *ngFor="let study of categories[categoryIndex].leaves; let i = index">
+                                <div class="study">
+                                    <div class="study-image-wrapper">
+                                        <img src="assets/images/Note.svg" class="study-image" />
+                                        <div class="hover-image">
+                                            <div class="preview"
+                                                *ngIf="((pending && i &lt; 2) || !pending) && study.pdf_preview && study.pdf_preview.url">
+                                                <img (click)="setPdfSrc(study.pdf_preview.url, content)"
+                                                    src="assets/images/preview.png" />
+                                                {{pageContent?.preview}}
+                                            </div>
+                                            <div class="download" *ngIf="!pending && study.pdf && study.pdf.url">
+                                                <a [href]="study.pdf?.url" download="example.pdf" target="_blank"><img
+                                                        src="assets/images/download.png" /></a>
+                                                {{pageContent?.download}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="content">
+                                        <div class="date-and-duration">
+                                            <div class="date">
+                                                <span class="new" *ngIf="newStudy(study)">{{pageContent?.new}}</span>
+                                                <span *ngIf="!newStudy(study)">{{ studyDate(study) }}</span>
+                                            </div>
+                                            <div class="duration"
+                                                *ngIf="study.content && study.content.duration">
+                                                <span>{{pageContent?.duration}} {{ study.content.duration }}</span>
+                                            </div>
+                                        </div>
+                                        <div class="head-title">
+                                            <span>{{ study.name }}</span>
+                                        </div>
+                                        <div class="artist" *ngIf="study.content && study.content.artist">
+                                            <span>({{ study.content.artist }})</span>
+                                        </div>
+                                        <div class="description" *ngIf="study.content && study.content.description">
+                                            {{ study.content.description }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="loader" *ngIf="loadingPdf">
+            <img src="assets/images/loader.gif" alt="">
+        </div>
+        <pdf-viewer (after-load-complete)="loadingPdf = false" [src]="pdfSrc" [show-all]="true" [original-size]="false" [fit-to-page]="true" [autoresize]="false" style="display: block;"></pdf-viewer>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+    </div>
+</ng-template>
+
+<app-footer *ngIf="profilePage"></app-footer>

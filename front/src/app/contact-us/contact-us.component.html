@@ -1,0 +1,96 @@
+<app-header *ngIf="levels && levels.length != 0" (update)="ngOnInit()" [levelData]="this.levels[this.instrumentIndex][levelIndex - 1]" [instrumentData]="this.currentInstrument" ></app-header>
+<app-header *ngIf="!levels || (levels && levels.length == 0)" (update)="ngOnInit()"  ></app-header>
+<div class="contact-content">
+  <div class="container">
+    <div class="title">
+      {{content?.title}}
+    </div>
+    <div class="row">
+    <div class="offset-lg-1 col-lg-10 col-md-12 col-sm-12 description">
+      {{ content?.description.first }}
+      <a href="mailto:office@wagner-ime.org" target="_blank">{{ content?.description.mail }}</a>
+      {{ content?.description.second }}
+    </div>
+  </div>
+    <div class="row first">
+      <div class="offset-lg-1 col-lg-4 col-md-4 col-sm-4">
+        <div class="subtitle">
+          {{ content?.countries[0].country }}
+        </div>
+        <div class="contact">
+          <span class="bold">{{ content?.countries[0].title }}</span>
+          <br>
+          <a href="mailto:office@wagner-ime.org" target="_blank">{{content?.countries[0].mail}}</a>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-4 col-sm-4">
+          <div class="subtitle">
+              {{ content?.countries[1].country }}
+          </div>
+          <div class="contact">
+            <span class="bold">{{ content?.countries[1].title }}</span>
+            <br>
+            {{content?.email}}<a href="mailto:mjpolo30@gmail.com" target="_blank">{{content?.countries[1].mail}}</a>
+            <br>
+            {{content?.phone}}<a href="tel:+18564044743">{{content?.countries[1].phone}}</a>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-4">
+            <div class="subtitle">
+                {{ content?.countries[2].country }}
+            </div>
+            <div class="contact">
+              <span class="bold">{{ content?.countries[2].title }}</span>
+              <br>
+              {{content?.email}}<a href="mailto:amin_gh_1370@yahoo.com" target="_blank">{{content?.countries[2].mail}}</a>
+              <br>
+              {{content?.phone}}<a href="tel:+989127717056">{{content?.countries[2].phone}}</a>
+            </div>
+          </div>
+    </div>
+    <div class="row first">
+      <div class="offset-lg-1 col-lg-4 col-md-4 col-sm-4">
+          <div class="subtitle">
+              {{ content?.countries[3].country }}
+            </div>
+            <div class="contact">
+              <span class="bold">{{ content?.countries[3].title }}</span>
+              <br>
+              {{content?.email}}<a href="mailto:capilla@wagner-ime.org" target="_blank">{{content?.countries[3].mail}}</a>
+              <br>
+              {{content?.phone}}<a href="tel:capilla@wagner-ime.org">{{content?.countries[3].phone}}</a>
+            </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4">
+          <div class="subtitle">
+              {{ content?.countries[4].country }}
+            </div>
+            <div class="contact">
+              <span class="bold">{{ content?.countries[4].title }}</span>
+              <br>
+              <span>{{ content?.countries[4].director }}</span>
+              <br>
+              <span>{{ content?.countries[4].address }}</span>
+              <br>
+              {{content?.email}}<a href="mailto:eduviolin@hotmail.com" target="_blank">{{ content?.countries[4].mail }}</a>
+              <br>
+              {{content?.phone}}<a href="tel:+59144523722">{{ content?.countries[4].phone1 }}</a>, <a href="tel:+59170348235">{{ content?.countries[4].phone2 }}</a>
+              <br>
+              <span><a href="https://www.facebook.com/Conservatorioteofilovargas" target="_blank">{{ content?.countries[4].facebook }}</a></span>
+            </div>
+      </div>
+    </div>
+   <div class="row">
+      <div class="offset-lg-1 col-lg-10 col-md-12 col-sm-12 company">
+        <p>
+            {{ content?.wagner }}
+        </p>
+        <p>
+            {{ content?.company }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

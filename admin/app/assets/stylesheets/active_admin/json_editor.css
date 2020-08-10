@@ -1,0 +1,65 @@
+/*
+ *= require jsoneditor/jsoneditor
+ *= depend_on_asset "jsoneditor/img/jsoneditor-icons.png"
+ */
+
+
+.jsoneditor-wrap textarea {
+  display: none;
+}
+
+.jsoneditor table {
+  width: auto;
+  margin-bottom: auto;
+}
+
+
+.jsoneditor {
+  background-color: white;
+  width: auto;
+  height: 300px;
+  border-color: rgb(201, 208, 214);
+  border-radius: 3px;
+  border-width: 1px;
+  border-width: 1px;
+}
+
+.jsoneditor .menu {
+  display: none;
+}
+
+.jsoneditor .menu a {
+  color: rgb(201, 208, 214);
+}
+
+.jsoneditor .menu button {
+  border-color: rgb(201, 208, 214);
+  background-color: white;
+  color: white;
+}
+
+.jsoneditor .menu button:disabled {
+  background-color: #f4f4f4;
+}
+
+.jsoneditor .search .frame {
+  border-color: rgb(201, 208, 214);
+}
+
+/*
+ * Use text mode
+ */
+.jsoneditor-wrap textarea.text {
+    display: block;
+
+}
+.jsoneditor .menu button.separator {
+    color: black;
+    text-shadow: none;
+}
+.jsoneditor-contextmenu ul li button {
+    text-shadow: none;
+}
+form fieldset > ol > li.error .jsoneditor {
+    border: 1px solid #932419;
+}

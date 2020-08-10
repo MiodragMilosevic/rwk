@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 54.1 (76490) - https://sketchapp.com -->
+    <title>icon-user</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Additional-pages" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="WagnerIME---Home---China" transform="translate(-893.000000, -672.000000)" fill="#FFFFFF" fill-rule="nonzero">
+            <g id="Group-4" transform="translate(0.000000, 594.000000)">
+                <g id="Group" transform="translate(230.000000, 25.000000)">
+                    <g id="Group-8" transform="translate(630.000000, 0.000000)">
+                        <g id="Login">
+                            <g id="Login-bttn" transform="translate(0.000000, 38.000000)">
+                                <path d="M42.9980043,26.1955 C39.918625,26.1955 37.4122636,23.68375 37.4122636,20.59775 C37.4122636,17.51175 39.918625,15 42.9980043,15 C46.0773836,15 48.5837449,17.51175 48.5837449,20.59775 C48.5837449,23.68375 46.0773836,26.1955 42.9980043,26.1955 Z M42.9980043,28.5275 C49.7569725,28.5275 52.8479818,30.48475 53,34.87525 L33,34.87525 C33.1481814,30.48845 36.2390361,28.5275 42.9980043,28.5275 Z" id="icon-user"></path>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

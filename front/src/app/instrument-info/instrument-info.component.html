@@ -1,0 +1,126 @@
+<app-header (update)="ngOnInit()"></app-header>
+<div class="instrument-info-content">
+  <div class="instrument-info-header">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-2 col-md-3 col-sm-12">
+          <div class="instrument-info-title">
+            <div class="instrument-info-top">
+              <div class="selected-course">
+                <span>{{content?.welcome}}, {{ user?.first_name }}</span>
+              </div>
+            </div>
+            <div class="instrument-info-bottom">
+              {{content?.choose_course}}
+            </div>
+          </div>
+        </div>
+        <div class="offset-lg-4 offset-md-3 col-lg-6 col-md-6 col-sm-12">
+          <div class="stepper">
+            <div class="stepper-line-left">
+              <div class="circle left">
+                <img src="assets/images/stepper/Checked.png" />
+              </div>
+              <div class="circle left-middle">
+                <img src="assets/images/stepper/Current.png" />
+              </div>
+            </div>
+            <div class="stepper-line-right">
+              <div class="circle-number right-middle">
+                <span>3</span>
+              </div>
+              <div class="circle-number right">
+                <span>4</span>
+              </div>
+            </div>
+            <div class="stepper-name-left">
+              <span class="left">
+                {{content?.stepper_left}}
+              </span>
+              <span class="left-middle">
+                {{content?.stepper_left_middle}}
+              </span>
+            </div>
+            <div class="stepper-name-right">
+              <span class="right-middle">
+                {{content?.stepper_right_middle}}
+              </span>
+              <span class="right">
+                {{content?.stepper_right}}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="instruments-list" >
+          <div class="instrument" *ngFor="let instrument of instruments; let i = index">
+            <div class="image-wrapper" [ngClass]="{ 'chosen-image': i == instrumentIndex }">
+              <img *ngIf="instrument?.photo" src="{{instrument?.photo?.image?.url}}" (click)="chooseInstrument(i)" />
+            </div>
+            <div class="instrument-name">{{instrument?.name}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="row" *ngIf="!instrumentIndex && instrumentIndex != 0">
+        <div class="col-lg-12 col-md-12 col-sm-12 text-center">
+          <div class="activation-text">{{content?.activation_text}}</div>
+          <button class="activation-button" (click)="clickHere()">{{content?.activation_button}}</button>
+        </div>
+      </div>
+      <div class="row" *ngIf="instrumentIndex  || instrumentIndex == 0">
+        <div class="col-lg-12 col-md-12 col-sm-12 text-right">
+          <button class="continue-button" (click)="continue()">{{content?.continue_button}}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container content" *ngIf="instrumentIndex || instrumentIndex == 0">
+    <div class="row">
+      <div class="col-lg-7 col-md-10 col-sm-12 instrument-content">
+        <div class="title">
+          <span *ngIf="instruments">{{instruments[instrumentIndex]?.name}}</span>
+        </div>
+        <div class="content">
+          <p *ngFor="let description of instruments[instrumentIndex]?.content?.description">
+            {{description?.text}}
+          </p>
+        </div>
+      </div>
+      <div class="col-lg-5 col-md-10 col-sm-12 marking-criteria">
+        <div class="title">
+          <span>{{content?.marking_criteria}}</span>
+        </div>
+        <div class="content">
+          <div class="intro">
+            <span>{{content?.intro}}</span>
+          </div>
+          <div class="guidelines">
+            <ol>
+              <div *ngFor="let criteria of instruments[instrumentIndex]?.content?.criteria_list">
+              <li *ngIf="criteria && criteria.criteria !== ''">{{ criteria?.criteria }}
+              </li>
+            </div>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container content" *ngIf="!instrumentIndex && instrumentIndex != 0">
+    <div class="content-title">
+      {{content?.general_info}}
+    </div>
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12">
+        <div class="content-text">
+          <div *ngFor="let text of content?.content_text">
+            {{text}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

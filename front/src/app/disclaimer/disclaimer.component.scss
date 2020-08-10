@@ -1,0 +1,84 @@
+@import "../../assets/styles/colors.scss";
+
+.content {
+
+    .container-content {
+        margin-left: 45px;
+        margin-right: 45px;
+
+        .title {
+            color: $color-blue;
+            font-family: "Montserrat";	
+            font-size: 21px;	
+            font-weight: 500;	
+            line-height: 25px;
+            margin-top: 30px;
+        }
+
+        .text {
+            margin-top: 30px;
+            color:  $color-blue;	
+            font-family: "Montserrat";	
+            font-size: 16px;	
+            letter-spacing: 0.2px;	
+            line-height: 19px;	
+            text-align: justify;
+        }
+
+        .approve {
+            height: 50px;
+            margin-top: 30px;
+            color:  $color-blue;	
+            font-family: "Montserrat";	
+            font-size: 16px;	
+            letter-spacing: 0.2px;
+            line-height: 19px;	
+            text-align: justify;
+            margin-bottom: 20px;
+            text-align: center;
+
+            .checkbox {
+                border: 2px solid #D94699;
+                content: '';
+                height: 30px;
+                width: 30px;
+                line-height: 30px;
+                cursor: pointer;
+                color: #D94699;
+                border-radius: 5px;
+            }
+
+            .btn {
+                height: 40px;	
+                width: 180px;	
+                border-radius: 5px;	
+                background-color: #404B9E;
+                color: #ffffff;
+                font-weight: 500;
+                border: white;
+            }
+
+            .btn-gray {
+                height: 40px;	
+                width: 180px;	
+                border-radius: 5px;	
+                background-color: $color-gray;
+                color: #ffffff;
+                font-weight: 500;
+                border: white;
+            }
+        }
+    }
+}
+
+.continue {
+    text-align: right;
+
+    @media screen and (max-width: 747px){
+        text-align: center;
+    }
+}
+
+.form-group {
+    line-height: 27px;
+}

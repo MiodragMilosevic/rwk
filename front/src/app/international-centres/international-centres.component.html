@@ -1,0 +1,44 @@
+
+<app-header *ngIf="levels && levels.length != 0" (update)="ngOnInit()" [levelData]="this.levels[this.instrumentIndex][levelIndex - 1]" [instrumentData]="this.currentInstrument" ></app-header>
+<app-header *ngIf="!levels || (levels && levels.length == 0)" (update)="ngOnInit()"  ></app-header>
+
+<div class="international-centres-background" *ngIf="page">
+    <div class="container">
+    <div class="title">
+        {{content?.title}}
+    </div>
+    <div class="row">
+        <div class="col-lg-5 col-md-5 col-sm-12">
+            <div class="search-field">
+                <input type="text" placeholder="{{content?.search_holder}}" class="form-control" [(ngModel)]="country"
+                [ngbTypeahead]="search" [resultTemplate]="rt" [inputFormatter]="formatter"/>
+            </div>
+        </div>
+        <div class="offset-lg-2 offset-md-2 col-lg-5 col-md-5 col-sm-12">
+            <div class="current-location">
+                {{ content?.current_location }}:
+                <img src="assets/images/location_pin.svg"/>
+                <span class="country">{{selectedCountry}}</span>
+            </div>
+            <div class="examination-centres" *ngIf="!available">
+                {{ content?.not_available }}
+            </div>
+            <div class="examination-centres available" *ngIf="available" (click)="redirectToCenterList()">
+                 {{ content?.international_centres + ' ' +  selectedCountry }}
+            </div>
+        </div>
+    </div>
+    <div class="map-title">
+        {{ content?.select_country }}:
+    </div>
+    <div id="regions_div" style="width: 900px; height: 500px; margin: auto;" class="hidden"></div>
+</div>
+</div>
+
+<ng-template #rt let-r="result" let-t="term">
+    <div class="typeahead-template" (click)="setLocation(r)">
+        <ngb-highlight [result]="r.name" [term]="t"></ngb-highlight>
+    </div>
+</ng-template>
+
+<app-footer></app-footer>
